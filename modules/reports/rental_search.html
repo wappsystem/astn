@@ -1,0 +1,86 @@
+<section>
+    <div id=toolbar__ID>
+        <a id=back__ID>Back</a>
+        <span class=tab__ID></span>Accumulated including: <select id=State__ID type=select></select><select id=City__ID type=select></select>
+        <a id=query__ID >Query</a>
+        <a id=export__ID >Export</a>
+    	<span class=tab__ID></span>Rental search
+    </div>
+    <table id=grid__ID></table>
+</section>
+<script>
+    function F__ID(){
+        //------------------------
+        VmInclude:__BASE__/vmiis/Common-Code/toolbar/back.js
+        VmInclude:__BASE__/vmiis/Common-Code/grid/grid.js
+        VmInclude:__BASE__/vmiis/Common-Code/style/ease-in-out.js
+        //------------------------
+         var $List=$('#State__ID');
+         $List.append(  $('<option>All</option>').val('').html(''))
+         sql="select DISTINCT state=@('State') from [TABLE-20010716] order by @('State')";
+         var req_data={cmd:'query_records',sql:sql};
+         $VmAPI.request({data:req_data,callback:function(res){
+             for(var i=0;i<res.records.length;i++){
+                 var state=res.records[i].state;
+                 $List.append(  $('<option></option>').html(state))
+             }
+         }});
+         $List.val();
+         //------------------------
+         var city_query=function(){
+             $List2.html('');
+             sql="select city=@('City'),city_uid=UID from [TABLE-20010716] where @('State')=@S1 order by @('City')";
+             var req_data={cmd:'query_records',sql:sql,s1:$List.val()};
+             $VmAPI.request({data:req_data,callback:function(res){
+                 for(var i=0;i<res.records.length;i++){
+                     var city=res.records[i].city;
+                     var city_uid=res.records[i].city_uid;
+                     $List2.append(  $('<option></option>').val(city_uid).html(city))
+                 }
+             }});
+         }
+         //------------------------
+          var $List2=$('#City__ID');
+            city_query();
+          $List2.val();
+        //---------------------------------------------
+        $('#State__ID').on('change',function(){
+            city_query();
+        })
+        //---------------------------------------------
+        $('#query__ID').on('click',function(){ _set_req(); });
+    	//---------------------------------------------
+        var _fields="State,City,_Rentals";
+        //-------------------------------------
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+        });
+        //-------------------------------------
+        _cell_render=function(records,I,field,td,set_value,source){
+            switch(field){
+              case '_Rentals':
+              records[I].vm_custom[field]=true;
+              if(records[I].UID==null || records[I].UID==undefined) return;
+              td.html("<u style='cursor:pointer;'>Rentals</u>");
+              td.find('u').on('click',function(){
+                  $vm.load_module_by_name(_app_id+_module.panel,$vm.root_layout_content_slot,{
+                      project_name:records[I].City,
+                      project_rid:records[I].State,
+                      project_pid:_db_pid,
+                      project_uid:records[I].UID,
+                  })
+              })
+              break;
+
+            }
+        }
+        //-------------------------------------
+        $('#D__ID').on('load',function(){ _set_req();   })
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__BASE__/vmiis/Common-Code/grid/grid.css
+</style>

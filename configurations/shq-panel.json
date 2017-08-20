@@ -1,0 +1,61 @@
+{
+	"name":"SHQ",
+	"url":"https://vmiis.github.io/modules/panels/panel.2.html",
+	"parameters":{
+	},
+	"panel":
+	{
+		"columns":
+		[
+			{
+				"sections":
+				[
+					{
+						"name":"My Rental Units",
+						"modules":
+						[
+							{
+								"module_id":"my_rental_units",
+								"name":"My Rental Units",
+								"table_id":"",
+								"url":"/modules/reports/my_rental_units.html",
+								"counting":"1"
+							}
+						]
+					},
+					{
+						"name":"Search rentals",
+						"modules":
+						[
+							{
+								"module_id":"rental_search",
+								"name":"Search availability for corporate housing and vacation rentals",
+								"table_id":"20010717",
+								"url":"/modules/reports/rental_search.html",
+								"counting":"1"
+							}
+						]
+					}
+				]
+			},
+			{
+				"sections":
+				[
+					{
+						"name":"Setup",
+						"modules":
+						[
+							{
+								"module_id":"rental_sites",
+								"name":"Rental Sites",
+								"table_id":"20010716",
+								"url":"/modules/setup/rental_sites.html",
+								"counting":"1"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

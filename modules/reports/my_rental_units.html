@@ -1,0 +1,95 @@
+<section>
+    <div id=toolbar__ID>
+        <a id=back__ID>Back</a>
+        <span class=tab__ID></span>
+        <a id=query__ID >Query</a>
+        <a id=export__ID >Export</a>
+        <span class=tab__ID></span>My Rental Units
+    </div>
+    <table id=grid__ID></table>
+</section>
+<script>
+    function F__ID(){
+        //------------------------
+        VmInclude:__BASE__/vmiis/Common-Code/toolbar/back.js
+        VmInclude:__BASE__/vmiis/Common-Code/grid/grid.js
+        VmInclude:__BASE__/vmiis/Common-Code/style/ease-in-out.js
+        //------------------------
+        //number dropdown
+        $('#query__ID').on('click',function(){_set_req();  });
+    	//---------------------------------------------
+        var _fields="Unit,Pictures,PropertyCode,Vendor,BookingId,UnitNo,UnitCode,UnitType,UniqueId,Name,InformationLink,InformationPublicLink,PictureLink,City,State";
+        _fields+=",Zip,Country,Latitude,Longitude,Neighborhood,Address,SuiteNo,CrossStreets,Parking,Bedrooms,Bathrooms,UnitSize,SizeType";
+        _fields+=",Accommodates,Currency,DRate,WRate,MRate,Rate,RateTerm,NoSeasonalRates,Deposit,FixedExp,FixedTax,MinimumStay,AdvResLimit";
+        _fields+=",BookingTerms,Remark,Furnished,ContactName,ContactPhone,ContactEmail,Description,LivingFeatures,Amenities";
+        _fields+=",LocationMapLink,CalendarLink,CalendarPublicLink,iCalendarLink,MorePicturesLink,NrOfPictures,CustomXML,DistributorXML";
+        //-------------------------------------
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+        });
+        //-------------------------------------
+
+        _cell_render=function(records,I,field,td,set_value,source){
+            switch(field){
+            }
+        }
+        xml='<Pictures><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R01.JPG</Picture><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R02.JPG</Picture><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R03.JPG</Picture><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R04.JPG</Picture><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R05.JPG</Picture><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R06.JPG</PictPicturee><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R07.JPG</Picture><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R08.JPG</Picture><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R09.JPG</Picture><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R10.JPG</Picture><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R11.JPG</Picture><Picture>http://www.aaxsys.com/units/vendors/AMSI-SF/ZNHMA1338/R12.JPG</Picture></Pictures>'
+
+        //-------------------------------------
+        $('#D__ID').on('load',function(){ abs=xmlToJson(xml); /*_set_req();*/  })
+        //-------------------------------------
+        var request_num=0;
+        _set_req=_set_req_export=function(){
+            var sql="select Information from [TABLE-"+_db_pid+"]";
+            _req={cmd:'query_records',sql:sql,i2:$('#YY__ID').val(),s1:$('#YY__ID option:selected').text()};
+            //-------------------------------------
+        }
+        //-------------------------------------
+        function xmlToJson(xml) {
+
+        	// Create the return object
+        	var obj = {};
+
+        	if (xml.nodeType == 1) { // element
+        		// do attributes
+        		if (xml.attributes.length > 0) {
+        		obj["@attributes"] = {};
+        			for (var j = 0; j < xml.attributes.length; j++) {
+        				var attribute = xml.attributes.item(j);
+        				obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+        			}
+        		}
+        	} else if (xml.nodeType == 3) { // text
+        		obj = xml.nodeValue;
+        	}
+
+        	// do children
+        	// If just one text node inside
+        	if (xml.hasChildNodes() && xml.childNodes.length === 1 && xml.childNodes[0].nodeType === 3) {
+        		obj = xml.childNodes[0].nodeValue;
+        	}
+        	else if (xml.hasChildNodes()) {
+        		for(var i = 0; i < xml.childNodes.length; i++) {
+        			var item = xml.childNodes.item(i);
+        			var nodeName = item.nodeName;
+        			if (typeof(obj[nodeName]) == "undefined") {
+        				obj[nodeName] = xmlToJson(item);
+        			} else {
+        				if (typeof(obj[nodeName].push) == "undefined") {
+        					var old = obj[nodeName];
+        					obj[nodeName] = [];
+        					obj[nodeName].push(old);
+        				}
+        				obj[nodeName].push(xmlToJson(item));
+        			}
+        		}
+        	}
+        	return obj;
+        }
+    }
+</script>
+<style>
+    VmInclude:__BASE__/vmiis/Common-Code/grid/grid.css
+</style>
