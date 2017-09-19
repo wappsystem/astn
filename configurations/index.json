@@ -8,19 +8,23 @@
 	{
 		"home":
 		{
-			"url":"https://vmiis.github.io/modules/home/home.html"
-		}
-	},
-	"panels":
-	{
-		"shq":{
-			"config_url":"/configurations/shq-panel.json"
+			"url":"/modules/static/home.html"
 		},
-		"aused":{
-			"config_url":"/configurations/aused-panel.json"
+		"pricing":
+		{
+			"url":"/modules/static/pricing.html"
 		},
-		"research_data":{
-			"config_url":"/configurations/research_data-panel.json"
+		"lift-osa":
+		{
+			"url":"/configurations/lift-osa-panel.json"
+		},
+		"aused":
+		{
+			"url":"/configurations/aused-panel.json"
+		},
+		"shq":
+		{
+			"url":"/configurations/shq-panel.json"
 		}
 	}
 }
