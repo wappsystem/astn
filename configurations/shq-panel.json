@@ -42,15 +42,22 @@
 				"sections":
 				[
 					{
-						"name":"Setup",
+						"name":"Questionniare",
 						"modules":
 						[
 							{
-								"module_id":"rental_sites",
-								"name":"Rental Sites",
-								"table_id":"20010716",
-								"url":"/modules/setup/rental_sites.html",
-								"counting":"1"
+								"module_id":"ess",
+								"name":"Epworth Sleepiness Scale",
+								"table_id":"20011190",
+								"url":"/modules/dynamic/shq/epworth_sleepiness_scale.html",
+								"counting":"1",
+								"quest":"1",
+								"form_module":"epworth_sleepiness_scale_form"
+							}
+							,{
+								"module_id":"ess_form",
+								"table_id":"20011190",
+								"url":"/modules/dynamic/shq/epworth_sleepiness_scale.form.html"
 							}
 						]
 					}
