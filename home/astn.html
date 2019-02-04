@@ -1,0 +1,52 @@
+<div id=D__ID>
+    <div>
+    	<div id=section_1__ID></div>
+        <div id=section_2__ID></div>
+<!--    	<div id=section_2__ID></div>-->
+    </div>
+	<script>
+		function F__ID(){
+			$('#D__ID').on('load',function(){
+			})
+//            $vm.load_component('https://astn.wappsystem.com.au/home/astn-page1-text.html','section_1__ID');
+            $vm.load_component('http://127.0.0.1:8000/wappsystem/astn/home/astn-page1-text.html','section_1__ID');
+		}
+        $vm.load_component=function(url,div){
+            var apppath=window.location.href.substring(0, window.location.href.lastIndexOf('/')).split('\/?')[0];
+            var ver=localStorage.getItem(apppath+url+"ver");
+            var txt=localStorage.getItem(apppath+url+"txt");
+            var http127=0;
+    		if(url.indexOf('http://127.0.0.1')!=-1 || url.indexOf('http://localhost')!=-1) http127=1;
+            if(ver!=$vm.ver[1] || http127==1 || txt==null){
+                $.get(url+'?_='+new Date().getTime(),function(new_txt){
+                    localStorage.setItem(apppath+url+"txt",new_txt);
+                    localStorage.setItem(apppath+url+"ver",$vm.ver[1]);
+                    console.log('loading from url. '+url+' '+ver+'/'+$vm.ver[1]+" 127:"+http127);
+                    new_txt=new_txt.replace(/__CURRENT_URL__/g,url);
+                    $('#'+div).html(new_txt);
+                },'text');
+            }
+            else{
+                console.log('loading from storage. '+url+' '+ver+'/'+$vm.ver[1]+" 127:"+http127);
+                txt=txt.replace(/__CURRENT_URL__/g,url);
+                $('#'+div).html(txt);
+            }
+            //---------------------------------------------
+        };
+	</script>
+	<style>
+		#D__ID{
+			height:100%;
+			animation: vm_module_fadein 1.0s;
+		}
+		@keyframes D__ID {
+			from {padding-top: 300px;}
+			to {padding-top: 0px;}
+		}
+	    @media screen and (max-width: 992px) {
+	        #D__ID{
+	            animation: vm_module_fadein 1.0s;
+	        }
+	    }
+	</style>
+</div>

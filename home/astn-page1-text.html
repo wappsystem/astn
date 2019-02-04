@@ -1,0 +1,90 @@
+<div id=clinical__ID>
+    <div class="container" style='max-width:900px'>
+      <div class="row">
+        <div class=col>
+            <h1>ASTN<br></h1>
+            <p>The mission of the Australasian Sleep Trials Network is to conduct and facilitate clinical trials of national and international significance that will have a major impact on sleep health. It will achieve this mission principally through investigator driven trials, funded by government or industry.</p>
+            </p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+            <div class="col-sm col-md-4">
+                <div class="astn-thumb">
+                    <img src="http://127.0.0.1:8000/wappsystem/astn/home/road.png" class="img-fluid" alt="SHQ">
+                    <div class="astn-overlay">
+                        <div class="astn-des">
+                            <h2>Sleep Health Questionnaire</h2>
+                        </div>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate.</p>
+            </div>
+
+            <div class="col-sm col-md-4">
+                <div class="astn-thumb">
+                    <img src="http://127.0.0.1:8000/wappsystem/astn/home/road.png" class="img-fluid" alt="AUSED">
+                        <div class="astn-overlay">
+                            <div class="astn-des">
+                                <h2>AusEd driving simulator</h2>
+                            </div>
+                        </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate.</p>
+            </div>
+
+            <div class="col-sm col-md-4">
+                <div class="astn-thumb">
+                    <img src="http://127.0.0.1:8000/wappsystem/astn/home/road.png" class="img-fluid" alt="NEURO">
+                        <div class="astn-overlay">
+                            <div class="astn-des">
+                                <h2>Neurocognitive Test Battery </h2>
+                                <h3></h3>
+                            </div>
+                        </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate.</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>
+</div>
+<script>
+        $('#test__ID').on('click',function(e){
+        $vm.load_module_v2('main',$vm.root_layout_content_slot,{});
+    })
+</script>
+
+<style>
+    #clinical__ID h1{
+        font-size: 60px;
+        color: rgba(33, 33, 33, 0.8);
+        line-height: 1.2;
+        font-weight: 400;
+        /*text-transform: uppercase;*/
+        text-align: center !important;
+        font-family: "Roboto Slab", Arial, sans-serif;
+    }
+    #clinical__ID{
+        height:100%;
+		display: flex;
+		align-items: center;
+        font-size: 20px;
+        line-height: 1.5;
+        font-weight: 600;
+        color: rgba(33, 33, 33, 1);
+        text-align: center;
+        padding-bottom:100px;
+        font-family: "Nunito Sans", Arial, sans-serif;
+    }
+    @media screen and (max-width: 900px) {
+        #health__ID h1{
+            font-size: 40px;
+        }
+    }
+</style>
