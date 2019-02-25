@@ -2,17 +2,22 @@
     <div>
         <div id=toolbar__ID class="navbar navbar-default">
         	<form class="form-inline">
-        		<button type=button id=count__ID class='btn btn-secondary'>Count</button>
+        		<button type=button id=count__ID class='btn btn-secondary'>Count</button> <a class="small font-italic text-muted mt-1"><br>Shows the number of records</a>
         	</form>
         	<span id=elapsed__ID style='float:right'></span>
 		</div>
         <section id=panel__ID>
-        	<div class='nav__ID' id=panel1__ID>
+        	<div class='nav__ID'>
         		<span>Participants</span>
         		<ul>
         			<li title="Manage participant - Add new. Data entry for single participant. Setup questionnaires."><a href=?/participant-data>Participants</a></li>
 					<p class="small font-italic text-muted mt-1">Manage participant<br>&bull; Add new participant <br>&bull; Data entry for single participant.<br>&bull; Activate questionnaires</p>
 				</ul>
+                <span>Randomisation</span>
+        		<ul>
+        			<li title="We can accomodate any type of randomisation."><a href=?/randomisation-table-data-spardac>Randomisation table</a></li>
+                    <p class="small font-italic text-muted mt-1">We can accomodate any<br> type of randomisation</p>
+        		</ul>
         		<br>
         	</div>
         	VmInclude:__CURRENT_PATH__/panel-tasks.html
@@ -21,29 +26,20 @@
     <script>
         function F__ID(){
             //--------------------------------------------------------
-            var m=$vm.module_list['__MODULE__'];
-            //--------------------------------------------------------
 			$vm.module_list["__MODULE__"].show=function(){
-                document.title="Control Panel | "+$vm.default_title;
-                $("meta[name='description']").attr("content","Control Panel");
+                document.title="Dashboard | "+$vm.default_title;
+                $("meta[name='description']").attr("content","Dashboard");
             }
-            //--------------------------------------------------------
-            $('#D__ID').on('load',function(){
-                alert(JSON.stringify(m.input.record.Data))
-				//alert(m.input.record.Data.Consent)
-            })
             //--------------------------------------------------------
             $('#panel__ID a').on('click',function(e){
                 e.preventDefault();
                 var href=$(this).attr('href');
                 var app=$(this).attr('app');
-				if(app!=undefined){
-                    window.open(href);
-				}
-                else if(href!=undefined){
+                if(href!=undefined){
                     href=href.replace('?\/','');
-					href=href.replace(/\//g,'_');
+                    href=href.replace(/\//g,'_');
                     if(app==undefined) $vm.load_module(href,'',{});
+                    else if($vm.module_list[href]!=undefined) window.open($vm.module_list[href].url);
                     else alert("The '"+ href +"' is not defined in the module list");
                 }
             })
@@ -81,7 +77,7 @@
         		var N=0;
         		$('#panel__ID a').each(function(){
         			var $a=$(this);
-        			N++;
+					N++;
         			var href=$a.attr('href');
         			if(href!=undefined){
         				check_count($a,N);
@@ -93,7 +89,7 @@
         		//do not send too many requests to the server in a short period
         		setTimeout(function(){check_count_d($a)}, N*200);
         	}
-        	//--------------------------------------------------------
+			//--------------------------------------------------------
         	var check_count_d=function($a){
         		var href=$a.attr('href');
 				href=href.replace('?\/','');
@@ -105,11 +101,19 @@
 							$VmAPI.request({data:{cmd:'read',qid:$vm.qid,sql:sql},callback:function(res){
 								var num=res.records[0].Num;
 								var txt=$('<div/>').html($a.attr('data-a_text')).text();
-								$a.html(txt+" <mark style='background-color:#fff;font-size:9px'>["+num+"]</mark>")
+								$a.html(txt+" <mark class=count_marker__ID>["+num+"]</mark>")
 							}})
 						}
 						else{
-							
+							$vm.request({cmd:"count",table:tb,query:{},options:{}},function(res){
+								if(res.sys.permission==false){
+									return;
+								}
+								var txt=$a.attr('data-a_text');
+								txt=$('<div/>').html(txt).text();
+								var num=$('<div/>').html(res.result).text();
+								$a.html(txt+" <mark class=count_marker__ID>["+num+"]</mark>")
+							});
 						}
         			}
         		}
@@ -119,10 +123,11 @@
     </script>
     <style>
         #toolbar__ID{
+			font-family: 'Roboto Slab';
     		background-color:#ccc;
-    		padding-left:10px;
     		margin-bottom:0px;
-    		overflow:hidden'
+    		overflow:hidden;
+            padding: 5px 0 5px 10px;
     	}
         #toolbar__ID .form-inline > * {
             margin-right:5px;
@@ -142,8 +147,8 @@
     		animation: vm_module_fadein 1.0s;
     	}
         #panel__ID{
-    		padding:10px 0 0 20px;
-            font-size:14px;
+            font-family: 'Roboto Slab';
+    		padding:20px 0 0 20px;
     	}
     	#panel__ID a {
     		text-decoration: none;
@@ -169,6 +174,10 @@
 			font-weight: bold;
 			margin:3px 10px;
 	    }
+		.count_marker__ID{
+			background-color:#fff;
+			font-size:12px;
+		}
     	@media screen and (max-width:768px){
     		#panel__ID{
     			padding:10px 0 0 10px;
