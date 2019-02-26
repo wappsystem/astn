@@ -8,10 +8,10 @@
 		</div>
         <section id=panel__ID>
         	<div class='nav__ID' id=panel1__ID>
-        		<span>Participants</span>
+				<span>Participants</span>
+				<span class='small font-weight-light'><br>Manage participant<br> - Add new<br> - Data entry for single participant<br> - Setup questionnaires.</span>				
         		<ul>
-        			<li title="Manage participant - Add new. Data entry for single participant. Setup questionnaires."><a href=?/participant-data>Participants</a></li>
-					<p class="small font-italic text-muted mt-1">Manage participant<br>&bull; Add new participant <br>&bull; Data entry for single participant.<br>&bull; Activate questionnaires</p>
+        			<li id=participant__ID ><a title="Manage participant"  href=?/participant-data>Participants</a></li>
 				</ul>
         		<br>
         	</div>
@@ -29,9 +29,39 @@
             }
             //--------------------------------------------------------
             $('#D__ID').on('load',function(){
-                alert(JSON.stringify(m.input.record.Data))
-				//alert(m.input.record.Data.Consent)
-            })
+                $('#panel__ID li').hide();
+				$('#participant__ID').show();
+				alert(m.input.record.Data.project_name);
+				if(m.input.record.Data.Consent=='on') $('#Consent__ID').show();
+				if(m.input.record.Data.Background_Information=='on') $('#Background_Information__ID').show();
+				if(m.input.record.Data.General=='on') $('#General__ID').show();
+				if(m.input.record.Data.Ethnicity=='on') $('#Ethnicity__ID').show();
+				if(m.input.record.Data.Lifestyle=='on') $('#Lifestyle__ID').show();
+				if(m.input.record.Data.Medical_History=='on') $('#Medical_History__ID').show();
+				if(m.input.record.Data.Sleep_HQDP=='on') $('#Sleep_HQDP__ID').show();
+				if(m.input.record.Data.Sleep_Hygiene_Index=='on') $('#Sleep_Hygiene_Index__ID').show();
+				if(m.input.record.Data.Family_Sleep_History=='on') $('#Family_Sleep_History__ID').show();
+				if(m.input.record.Data.Medications=='on') $('#Medications__ID').show();
+				if(m.input.record.Data.Recreational_Drugs=='on') $('#Recreational_Drugs__ID').show();
+				if(m.input.record.Data.ESS=='on') $('#ESS__ID').show();
+				if(m.input.record.Data.MAPQ=='on') $('#MAPQ__ID').show();
+				if(m.input.record.Data.ISI=='on') $('#ISI__ID').show();
+				if(m.input.record.Data.Restless_Legs=='on') $('#Restless_Legs__ID').show();
+				if(m.input.record.Data.ME=='on') $('#ME__ID').show();
+				if(m.input.record.Data.FOSQ=='on') $('#FOSQ__ID').show();
+				if(m.input.record.Data.PSQI=='on') $('#PSQI__ID').show();
+				if(m.input.record.Data.PHQ=='on') $('#PHQ__ID').show();
+				if(m.input.record.Data.GAD=='on') $('#GAD__ID').show();
+				if(m.input.record.Data.DASS=='on') $('#DASS__ID').show();
+				if(m.input.record.Data.FSS=='on') $('#FSS__ID').show();
+				if(m.input.record.Data.SDS=='on') $('#SDS__ID').show();
+				if(m.input.record.Data.HPQ=='on') $('#HPQ__ID').show();
+				if(m.input.record.Data.Shiftwork=='on') $('#Shiftwork__ID').show();
+				if(m.input.record.Data.Shiftwork_Disorders=='on') $('#Shiftwork_Disorders__ID').show();
+				if(m.input.record.Data.MVA=='on') $('#MVA__ID').show();
+				if(m.input.record.Data.Workplace_Accidents=='on') $('#Workplace_Accddents__ID').show();
+				if(m.input.record.Data.Thank_You=='on') $('#Thank_You__ID').show();            
+			})
             //--------------------------------------------------------
             $('#panel__ID a').on('click',function(e){
                 e.preventDefault();
@@ -119,10 +149,11 @@
     </script>
     <style>
         #toolbar__ID{
+			font-family: 'Roboto Slab';
     		background-color:#ccc;
-    		padding-left:10px;
     		margin-bottom:0px;
-    		overflow:hidden'
+    		overflow:hidden;
+            padding: 5px 0 5px 10px;
     	}
         #toolbar__ID .form-inline > * {
             margin-right:5px;
@@ -142,8 +173,8 @@
     		animation: vm_module_fadein 1.0s;
     	}
         #panel__ID{
-    		padding:10px 0 0 20px;
-            font-size:14px;
+            font-family: 'Roboto Slab';
+    		padding:20px 0 0 20px;
     	}
     	#panel__ID a {
     		text-decoration: none;
@@ -169,6 +200,10 @@
 			font-weight: bold;
 			margin:3px 10px;
 	    }
+		.count_marker__ID{
+			background-color:#fff;
+			font-size:12px;
+		}
     	@media screen and (max-width:768px){
     		#panel__ID{
     			padding:10px 0 0 10px;
