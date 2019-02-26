@@ -2,16 +2,17 @@
     <div>
         <div id=toolbar__ID class="navbar navbar-default">
         	<form class="form-inline">
-        		<button type=button id=count__ID class='btn btn-secondary'>Count</button>
+        		<button type=button id=count__ID class='btn btn-secondary'>Count</button><a class="small font-italic text-muted mt-1">Current Project Name: </a><a id=project__ID class="mt-1"></a>
         	</form>
         	<span id=elapsed__ID style='float:right'></span>
 		</div>
         <section id=panel__ID>
         	<div class='nav__ID' id=panel1__ID>
 				<span>Participants</span>
-				<span class='small font-weight-light'><br>Manage participant<br> - Add new<br> - Data entry for single participant<br> - Setup questionnaires.</span>				
         		<ul>
-        			<li id=participant__ID ><a title="Manage participant"  href=?/participant-data>Participants</a></li>
+        			<li id=participant__ID ><a title="Manage participant"  href=?/participant-data>Participants</a>
+					<span class='small font-italic text-muted font-weight-light'><br>Manage participant<br> - Add new<br> - Data entry for single participant<br> - Setup questionnaires.</span>				
+					</li>
 				</ul>
         		<br>
         	</div>
@@ -31,7 +32,8 @@
             $('#D__ID').on('load',function(){
                 $('#panel__ID li').hide();
 				$('#participant__ID').show();
-				alert(m.input.record.Data.project_name);
+				$('#project__ID').text(m.input.record.Data.project_name);
+				//alert(m.input.record.Data.project_name);
 				if(m.input.record.Data.Consent=='on') $('#Consent__ID').show();
 				if(m.input.record.Data.Background_Information=='on') $('#Background_Information__ID').show();
 				if(m.input.record.Data.General=='on') $('#General__ID').show();
