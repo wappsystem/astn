@@ -1,7 +1,7 @@
 <div id=D__ID>
     <div id=form_container__ID>
         <div id=header__ID>
-    		Online questionnaire setup
+    		Online Sleep Health Questionnaire setup
     	</div>
         <form id=F__ID>
             <div class="container">
@@ -29,34 +29,49 @@
             //-------------------------------------
             VmInclude:__COMPONENT__/f/form.01.js
 			//-------------------------------------
-            var q_list={
-                "Screening":[
-					"one-many-standard-form-spardac",
-                    "one-many-special-1-form-spardac",
-                    "one-many-special-2-form-spardac",
-    			],
-    			"Baseline":[
-                    "textarea-form-spardac",
-                    "many-of-many-form-spardac",
-    			],
-    			"Visit 1":[
-                    "calculation-form-spardac",
-                    "visual-analogue-scale-form-spardac",
-                    "digital-scale-form-spardac",
-                    "star-rating-form-spardac",
-    			],
-    			"Visit 2":[
-                    "date-time-form-spardac",
-                    "number-max-min-form-spardac",
-    			],
-            }
+            var q_list={};
             //-------------------------------------
             var load=m.load;
 			m.load=function(){
-				load();
-				if(m.input.record!=undefined){
+                load();
+                q_list={"Sleep_Health_Questionnaires":[]};
+                $vm.request({cmd:"find",table:'astn-shq-project',query:{'UID':m.input.proj},sort:{I1:-1},skip:0,limit:1},function(res){
+                    if(res.result.length>0){
+                        var i=0;
+                        if(res.result[0].Data.Consent=='on') {q_list.Sleep_Health_Questionnaires[i]='consent-astn-form';i++}
+        				if(res.result[0].Data.Background_Information=='on') {q_list.Sleep_Health_Questionnaires[i]='background-information-astn-form';i++}
+		        		if(res.result[0].Data.General=='on') {q_list.Sleep_Health_Questionnaires[i]='general-astn-form';i++}
+				        if(res.result[0].Data.Ethnicity=='on') {q_list.Sleep_Health_Questionnaires[i]='ethnicity-self-astn-form';i++}
+				        if(res.result[0].Data.Lifestyle=='on') {q_list.Sleep_Health_Questionnaires[i]='lifestyle-astn-form';i++}
+				        if(res.result[0].Data.Medical_History=='on') {q_list.Sleep_Health_Questionnaires[i]='medical-history-astn-form';i++}
+				        if(res.result[0].Data.Sleep_HQDP=='on') {q_list.Sleep_Health_Questionnaires[i]='sleep-disorder-patterns-astn-form';i++}
+				        if(res.result[0].Data.Sleep_Hygiene_Index=='on') {q_list.Sleep_Health_Questionnaires[i]='sleep-hygiene-index-astn-form';i++}
+				        if(res.result[0].Data.Family_Sleep_History=='on') {q_list.Sleep_Health_Questionnaires[i]='social-history-astn-form';i++}
+				        if(res.result[0].Data.Medications=='on') {q_list.Sleep_Health_Questionnaires[i]='medications-astn-form';i++}
+				        if(res.result[0].Data.Recreational_Drugs=='on') {q_list.Sleep_Health_Questionnaires[i]='rec-drug-astn-form';i++}
+				        if(res.result[0].Data.ESS=='on') {q_list.Sleep_Health_Questionnaires[i]='ess-astn-form';i++}
+				        if(res.result[0].Data.MAPQ=='on') {q_list.Sleep_Health_Questionnaires[i]='map-astn-form';i++}
+				        if(res.result[0].Data.ISI=='on') {q_list.Sleep_Health_Questionnaires[i]='isi-astn-form';i++}
+				        if(res.result[0].Data.Restless_Legs=='on') {q_list.Sleep_Health_Questionnaires[i]='restless-leg-astn-form';i++}
+				        if(res.result[0].Data.ME=='on') {q_list.Sleep_Health_Questionnaires[i]='me-astn-form';i++}
+                        if(res.result[0].Data.FOSQ=='on') {q_list.Sleep_Health_Questionnaires[i]='fosq-astn-form';i++}
+                        if(res.result[0].Data.PSQI=='on') {q_list.Sleep_Health_Questionnaires[i]='psqi-astn-form';i++}
+                        if(res.result[0].Data.PHQ=='on') {q_list.Sleep_Health_Questionnaires[i]='phq-astn-form';i++}
+                        if(res.result[0].Data.GAD=='on') {q_list.Sleep_Health_Questionnaires[i]='gad7-astn-form';i++}
+                        if(res.result[0].Data.DASS=='on') {q_list.Sleep_Health_Questionnaires[i]='dass-astn-form';i++}
+                        if(res.result[0].Data.FSS=='on') {q_list.Sleep_Health_Questionnaires[i]='fss-astn-form';i++}
+                        if(res.result[0].Data.SDS=='on') {q_list.Sleep_Health_Questionnaires[i]='sds-astn-form';i++}
+                        if(res.result[0].Data.HPQ=='on') {q_list.Sleep_Health_Questionnaires[i]='hwpq-astn-form';i++}
+                        if(res.result[0].Data.Shiftwork=='on') {q_list.Sleep_Health_Questionnaires[i]='shiftwork-astn-form';i++}
+                        if(res.result[0].Data.Shiftwork_Disorders=='on') {q_list.Sleep_Health_Questionnaires[i]='shiftworkii-astn-form';i++}
+                        if(res.result[0].Data.MVA=='on') {q_list.Sleep_Health_Questionnaires[i]='mva-astn-form';i++}
+                        if(res.result[0].Data.Workplace_Accidents=='on') {q_list.Sleep_Health_Questionnaires[i]='wa-astn-form';i++}
+                        if(res.result[0].Data.Thank_You=='on') {q_list.Sleep_Health_Questionnaires[i]='thank-astn-form';}
+                    }
+                    if(m.input.record!=undefined){
                     set_check_list();
 				}
+                });
 			}
 			//-------------------------------------
             m.before_submit=function(data){
@@ -70,10 +85,10 @@
                 var txt="<tr><th style='width:30px'>No.</th><th>Table ID</th><th>Task</th><th style='width:20px'></th></tr>";
                 var No=0;
                 for(visit in q_list){
-                    No++;
+                    //No++;
                     var task=visit;
                     var pid="";
-                    txt+="<tr><td>"+No+"</td><td></td><td>"+task+"</td><td><input data-visit='"+task+"' type=checkbox class=visit__ID /></td></tr>";
+                    txt+="<tr><td></td><td></td><td>Select/Deselect all questionnaires</td><td><input data-visit='"+task+"' type=checkbox class=visit__ID /></td></tr>";
                     var visit_array=q_list[visit];
                     for(k in visit_array){
                         No++;

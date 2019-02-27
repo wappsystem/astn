@@ -33,6 +33,7 @@
                 $('#panel__ID li').hide();
 				$('#participant__ID').show();
 				$('#project__ID').text(m.input.record.Data.project_name);
+				//alert((m.input.record.UID))
 				//alert(m.input.record.Data.project_name);
 				if(m.input.record.Data.Consent=='on') $('#Consent__ID').show();
 				if(m.input.record.Data.Background_Information=='on') $('#Background_Information__ID').show();
@@ -75,7 +76,7 @@
                 else if(href!=undefined){
                     href=href.replace('?\/','');
 					href=href.replace(/\//g,'_');
-                    if(app==undefined) $vm.load_module(href,'',{});
+                    if(app==undefined) $vm.load_module(href,'',{proj:m.input.record.UID});
                     else alert("The '"+ href +"' is not defined in the module list");
                 }
             })

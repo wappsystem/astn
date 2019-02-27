@@ -32,7 +32,7 @@
                     case '_Setup':
                         td.html("<u style='cursor:pointer'>Setup</u>");
                         td.find('u').on('click',function(){
-    						$vm.load_module(m.questionnaire_setup,'',{record:records[I]});
+    						$vm.load_module(m.questionnaire_setup,'',{record:records[I],proj:m.input.proj });
                         });
                         break;
                     case '_Questionnaire':
