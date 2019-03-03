@@ -35,7 +35,7 @@
 			m.load=function(){
                 load();
                 q_list={"Sleep_Health_Questionnaires":[]};
-                $vm.request({cmd:"find",table:'astn-shq-project',query:{'UID':m.input.proj},sort:{I1:-1},skip:0,limit:1},function(res){
+                $vm.request({cmd:"find",table:'astn-shq-project-20003481',query:{'UID':m.input.proj},sort:{I1:-1},skip:0,limit:1},function(res){
                     if(res.result.length>0){
                         var i=0;
                         if(res.result[0].Data.Consent=='on') {q_list.Sleep_Health_Questionnaires[i]='consent-astn-form';i++}
