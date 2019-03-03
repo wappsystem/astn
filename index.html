@@ -19,12 +19,14 @@
         //------------------------------------
         //app urls
         $vm.public_url_$A='https://astn.wappsystem.com.au';
+        $vm.public_url_$B='https://modules.wappsystem.com.au';
         $vm.local_url_$A='http://127.0.0.1:8000/wappsystem/astn';
+        $vm.local_url_$B='http://127.0.0.1:8000/wappsystem/modules';
         //------------------------------------
         //where are your start modules
         $vm.start_modules=[
             "$A/app.html",
-            "$A/modules/mdb/f/frame.html",
+            "$B/mdb/f/frame.html",
         ]
         //------------------------------------
         //modules used in this app
@@ -35,7 +37,7 @@
         $vm.app_modules=[
             "$A/components/astn-home.js",
             "$A/components/astn.js",
-            "$A/modules/mdb/common.js",
+            "$B/mdb/common.js",
         ]
         //------------------------------------
         
@@ -51,7 +53,9 @@
         //replace the url
         $vm.replace_url=function(url){
             var urlR=url.replace("$A",$vm.public_url_$A);
+                urlR=urlR.replace("$B",$vm.public_url_$B);
             if($vm.localhost==true) urlR=urlR.replace($vm.public_url_$A,$vm.local_url_$A);
+            if($vm.localhost==true) urlR=urlR.replace($vm.public_url_$B,$vm.local_url_$B);
             return urlR;
         }
         //------------------------------------
