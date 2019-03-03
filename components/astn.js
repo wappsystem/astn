@@ -4,10 +4,10 @@
         "panel-child-astn": { url: "$A/components/panel/panel-child.html" },
 
         "shq-project-data": {
-            url: "$A/components/project/shq-project-data.html", Table: "astn-shq-project", form_module: "shq-project-form", router: 1,
+            url: "$A/components/project/shq-project-data.html", Table: "astn-shq-project-20003481", form_module: "shq-project-form", router: 1,
             child_panel: "panel-main-astn"
         },
-        "shq-project-form": { url: "$A/components/project/shq-project-form.html", Table: "astn-shq-project" },
+        "shq-project-form": { url: "$A/components/project/shq-project-form.html", Table: "astn-shq-project-20003481" },
 
         "participant-data": {
             url: "$A/components/participant/participant-data.html", Table: "astn-participant", form_module: "participant-form", router: 1,
