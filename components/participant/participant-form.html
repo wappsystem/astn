@@ -51,26 +51,27 @@
 			}
 			//-------------------------------------
             $('#F__ID input[name=Randomisation_Number]').on('click',function(){   
-				var I1=$('#F__ID input[name=Randomisation_Number').val();
-				if(I1==''){
-					$vm.request({cmd:"find",table:m.Table,sort:{I1:-1},skip:0,limit:1},function(res){
+				var I2=$('#F__ID input[name=Randomisation_Number').val();
+				if(I2==''){
+					$vm.request({cmd:"find",table:m.Table,sort:{I2:-1},skip:0,limit:1},function(res){
 						if(res.sys.permission==false){
 							$vm.alert("No permission. Private database table, ask the table's owner for permissions.");
 							return;
 						}
-						var max_I1=0;
+						var max_I2=0;
 						if(res.result.length>0) {
-							if(res.result[0].I1!==undefined) max_I1=res.result[0].I1
+							if(res.result[0].I2!==undefined) max_I2=res.result[0].I2
 						}
-						max_I1++;
-						$('#F__ID input[name=Randomisation_Number').val(max_I1);
+						max_I2++;
+						$('#F__ID input[name=Randomisation_Number').val(max_I2);
 						$('#F__ID input[name=Randomised_by').val($vm.user_name);
 					})
 				}
 			})
 			//-------------------------------------
 			m.before_submit=function(data,index){
-				var I1=$('#F__ID input[name=Randomisation_Number').val();	if(I1!='' && I1!='-') index.I1=parseInt(I1);
+				index.I1=$vm.astn_current_project_record.Data.Site+"-"+$vm.astn_current_project_record.UID;
+				var I2=$('#F__ID input[name=Randomisation_Number').val();	if(I2!='' && I2!='-') index.I2=parseInt(I2);
 			}
 			//-------------------------------------
 		}

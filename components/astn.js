@@ -1,6 +1,6 @@
 (function () {
     var modules = {
-        "panel-main-astn": { url: "$A/components/panel/panel-main.html", router: 1 },
+        "panel-main-astn": { url: "$A/components/panel/panel-main.html"},
         "panel-child-astn": { url: "$A/components/panel/panel-child.html" },
 
         "shq-project-data": {
@@ -10,13 +10,13 @@
         "shq-project-form": { url: "$A/components/project/shq-project-form.html", Table: "astn-shq-project-20003481" },
 
         "participant-data": {
-            url: "$A/components/participant/participant-data.html", Table: "astn-participant", form_module: "participant-form", router: 1,
+            url: "$A/components/participant/participant-data.html", Table: "astn-shq-participant-20002391", form_module: "participant-form",
             child_panel: "panel-child-astn",
             questionnaire_setup: "online-questionnaire-setup-astn",
             online_questionnaire: "online-questionnaire-app-astn",
             participant_id: { field1: "Subject_ID", field2: "Subject_Initials" }
         },
-        "participant-form": { url: "$A/components/participant/participant-form.html", Table: "astn-participant" },
+        "participant-form": { url: "$A/components/participant/participant-form.html", Table: "astn-shq-participant-20002391" },
 
         "online-questionnaire-setup-astn": { url: "$A/online-questionnaire/components/online-questionnaire-setup.html", Table: "astn-participant" },
         "online-questionnaire-app-astn": { url: "$A/online-questionnaire/index.html" },

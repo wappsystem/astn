@@ -1,6 +1,7 @@
 <div id=D__ID>
     <div>
-            VmInclude:__CURRENT_PATH__/../../../../modules/mdb/g/grid.01.hp.html
+            <!--Vm  Include:__CURRENT_PATH__/../../../../modules/mdb/g/grid.01.hp.html-->
+            VmInclude:__COMPONENT__/g/grid.01.html
         </div>
     <script>
         function F__ID(){
@@ -12,6 +13,10 @@
             var fields="_ASTN_ID,Local_ID,Initials,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
+            m.load=function(){
+                m.I1=$vm.astn_current_project_record.Data.Site+"-"+$vm.astn_current_project_record.UID;
+                alert(m.I1)
+            }
             m.cell_render=function(records,I,field,td,set_value,source){
                 switch(field){
                     case 'DOB':

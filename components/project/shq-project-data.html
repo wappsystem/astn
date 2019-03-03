@@ -10,9 +10,9 @@
             //-------------------------------------
             $('#title__ID').text('Project');            
             //-------------------------------------
-            //var fields="_Project_ID,Site,Project Name|project_name,Phone|phone,Thank You Comments|thank_you_comments,_shq_entry";
-            var fields="Project_ID,Site,project_name,phone,thank_you_comments,General,Ethnicity,Medical_History,Sleep_HQDP,Sleep_Hygiene_Index,Family_Sleep_History,Medications,Recreational_Drugs,ESS,MAPQ,ISI,Restless_Legs,ME,FOSQ,PSQI,PHQ,GAD,DASS,FSS,SDS,HPQ,Shiftwork,Shiftwork_Disorders,MVA,Workplace_Accidents";
+            var fields="_Project_ID,Site,Project Name|project_name,Phone|phone,Thank You Comments|thank_you_comments,_shq_entry";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            //m.import_fields="UID,Site,project_name,phone,thank_you_comments,General,Ethnicity,Medical_History,Sleep_HQDP,Sleep_Hygiene_Index,Family_Sleep_History,Medications,Recreational_Drugs,ESS,MAPQ,ISI,Restless_Legs,ME,FOSQ,PSQI,PHQ,GAD,DASS,FSS,SDS,HPQ,Shiftwork,Shiftwork_Disorders,MVA,Workplace_Accidents";
             //-------------------------------------
             m.cell_render=function(records,I,field,td,set_value,source){
                 switch(field){
