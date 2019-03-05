@@ -19,45 +19,48 @@
     		var participant_record;
     		var count={}
     		var participant_info=function(record){ 
-                if($vm.api_type=="sqlserver")   return record.Subject_ID+' '+record.Subject_Initials; 
-                else                            return record.Data.Subject_ID+' '+record.Data.Subject_Initials; 
+                if($vm.api_type=="sqlserver")   return record.Local_ID+' '+record.Initials; 
+                else                            return record.Data.Local_ID+' '+record.Data.Initials; 
             }
 			//--------------------------------------------------------
             $('#D__ID').on('load',function(){
                 $('#panel__ID li').hide();
 				$('#participant__ID').show();
 				$('#project__ID').text(m.input.record.Data.project_name);
-				alert(JSON.stringify(m.input.record));
-				//alert(m.input.record.Data.project_name);
-				if(m.input.record.Data.Consent=='on') $('#Consent__ID').show();
-				if(m.input.record.Data.Background_Information=='on') $('#Background_Information__ID').show();
-				if(m.input.record.Data.General=='on') $('#General__ID').show();
-				if(m.input.record.Data.Ethnicity=='on') $('#Ethnicity__ID').show();
-				if(m.input.record.Data.Lifestyle=='on') $('#Lifestyle__ID').show();
-				if(m.input.record.Data.Medical_History=='on') $('#Medical_History__ID').show();
-				if(m.input.record.Data.Sleep_HQDP=='on') $('#Sleep_HQDP__ID').show();
-				if(m.input.record.Data.Sleep_Hygiene_Index=='on') $('#Sleep_Hygiene_Index__ID').show();
-				if(m.input.record.Data.Family_Sleep_History=='on') $('#Family_Sleep_History__ID').show();
-				if(m.input.record.Data.Medications=='on') $('#Medications__ID').show();
-				if(m.input.record.Data.Recreational_Drugs=='on') $('#Recreational_Drugs__ID').show();
-				if(m.input.record.Data.ESS=='on') $('#ESS__ID').show();
-				if(m.input.record.Data.MAPQ=='on') $('#MAPQ__ID').show();
-				if(m.input.record.Data.ISI=='on') $('#ISI__ID').show();
-				if(m.input.record.Data.Restless_Legs=='on') $('#Restless_Legs__ID').show();
-				if(m.input.record.Data.ME=='on') $('#ME__ID').show();
-				if(m.input.record.Data.FOSQ=='on') $('#FOSQ__ID').show();
-				if(m.input.record.Data.PSQI=='on') $('#PSQI__ID').show();
-				if(m.input.record.Data.PHQ=='on') $('#PHQ__ID').show();
-				if(m.input.record.Data.GAD=='on') $('#GAD__ID').show();
-				if(m.input.record.Data.DASS=='on') $('#DASS__ID').show();
-				if(m.input.record.Data.FSS=='on') $('#FSS__ID').show();
-				if(m.input.record.Data.SDS=='on') $('#SDS__ID').show();
-				if(m.input.record.Data.HPQ=='on') $('#HPQ__ID').show();
-				if(m.input.record.Data.Shiftwork=='on') $('#Shiftwork__ID').show();
-				if(m.input.record.Data.Shiftwork_Disorders=='on') $('#Shiftwork_Disorders__ID').show();
-				if(m.input.record.Data.MVA=='on') $('#MVA__ID').show();
-				if(m.input.record.Data.Workplace_Accidents=='on') $('#Workplace_Accddents__ID').show();
-				if(m.input.record.Data.Thank_You=='on') $('#Thank_You__ID').show();            
+				//alert(JSON.stringify(m.input.record));
+                $vm.request({cmd:"find",table:'astn-shq-project-20003481',query:{'UID':m.input.proj},sort:{I1:-1},skip:0,limit:1},function(res){
+                    if(res.result.length>0){
+						if(res.result[0].Data.Consent=='on') $('#Consent__ID').show();
+						if(res.result[0].Data.Background_Information=='on') $('#Background_Information__ID').show();
+						if(res.result[0].Data.General=='on') $('#General__ID').show();
+						if(res.result[0].Data.Ethnicity=='on') $('#Ethnicity__ID').show();
+						if(res.result[0].Data.Lifestyle=='on') $('#Lifestyle__ID').show();
+						if(res.result[0].Data.Medical_History=='on') $('#Medical_History__ID').show();
+						if(res.result[0].Data.Sleep_HQDP=='on') $('#Sleep_HQDP__ID').show();
+						if(res.result[0].Data.Sleep_Hygiene_Index=='on') $('#Sleep_Hygiene_Index__ID').show();
+						if(res.result[0].Data.Family_Sleep_History=='on') $('#Family_Sleep_History__ID').show();
+						if(res.result[0].Data.Medications=='on') $('#Medications__ID').show();
+						if(res.result[0].Data.Recreational_Drugs=='on') $('#Recreational_Drugs__ID').show();
+						if(res.result[0].Data.ESS=='on') $('#ESS__ID').show();
+						if(res.result[0].Data.MAPQ=='on') $('#MAPQ__ID').show();
+						if(res.result[0].Data.ISI=='on') $('#ISI__ID').show();
+						if(res.result[0].Data.Restless_Legs=='on') $('#Restless_Legs__ID').show();
+						if(res.result[0].Data.ME=='on') $('#ME__ID').show();
+						if(res.result[0].Data.FOSQ=='on') $('#FOSQ__ID').show();
+						if(res.result[0].Data.PSQI=='on') $('#PSQI__ID').show();
+						if(res.result[0].Data.PHQ=='on') $('#PHQ__ID').show();
+						if(res.result[0].Data.GAD=='on') $('#GAD__ID').show();
+						if(res.result[0].Data.DASS=='on') $('#DASS__ID').show();
+						if(res.result[0].Data.FSS=='on') $('#FSS__ID').show();
+						if(res.result[0].Data.SDS=='on') $('#SDS__ID').show();
+						if(res.result[0].Data.HPQ=='on') $('#HPQ__ID').show();
+						if(res.result[0].Data.Shiftwork=='on') $('#Shiftwork__ID').show();
+						if(res.result[0].Data.Shiftwork_Disorders=='on') $('#Shiftwork_Disorders__ID').show();
+						if(res.result[0].Data.MVA=='on') $('#MVA__ID').show();
+						if(res.result[0].Data.Workplace_Accidents=='on') $('#Workplace_Accddents__ID').show();
+						if(res.result[0].Data.Thank_You=='on') $('#Thank_You__ID').show();            
+					}
+				});
 			})
 			//--------------------------------------------------------
             $('#panel__ID a').on('click',function(e){

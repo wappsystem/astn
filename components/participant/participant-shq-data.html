@@ -15,7 +15,7 @@
             //-------------------------------------
             m.load=function(){
                 m.I1=$vm.astn_current_project_record.Data.Site+"-"+$vm.astn_current_project_record.UID;
-                alert(m.I1)
+                //alert(m.I1)
             }
             m.cell_render=function(records,I,field,td,set_value,source){
                 switch(field){
@@ -31,7 +31,7 @@
                     case '_Data_Entry':
                         td.html("<u style='cursor:pointer'>Data Entry</u>");
                         td.find('u').on('click',function(){
-    						$vm.load_module(m.child_panel,'',{record:records[I]});
+    						$vm.load_module(m.child_panel,'',{record:records[I],proj:m.input.proj});
                         });
                         break;
                     case '_Setup':

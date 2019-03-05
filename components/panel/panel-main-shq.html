@@ -33,12 +33,12 @@
 				//===========
 				//for all child records, to get site info 
 				$vm.astn_current_project_record=m.input.record;
-				alert($vm.astn_current_project_record.Data.Site+"-"+$vm.astn_current_project_record.UID);
+				//alert($vm.astn_current_project_record.Data.Site+"-"+$vm.astn_current_project_record.UID);
 				//===========
                 $('#panel__ID li').hide();
 				$('#participant__ID').show();
 				$('#project__ID').text(m.input.record.Data.project_name);
-				//alert((m.input.record.UID))
+				//alert(m.input.record.UID)
 				//alert(m.input.record.Data.project_name);
 				if(m.input.record.Data.Consent=='on') $('#Consent__ID').show();
 				if(m.input.record.Data.Background_Information=='on') $('#Background_Information__ID').show();
