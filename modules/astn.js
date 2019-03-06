@@ -1,22 +1,22 @@
 (function () {
     var modules = {
-        "panel-main-shq-astn": { url: "$A/components/panel/panel-main-shq.html"},
-        "panel-child-shq-astn": { url: "$A/components/panel/panel-child-shq.html" },
+        "panel-main-shq-astn": { url: "$A/modules/panel-main-shq.html"},
+        "panel-child-shq-astn": { url: "$A/modules/panel-child-shq.html" },
 
         "project-shq-data": {
-            url: "$A/components/project/project-shq-data.html", Table: "astn-shq-project-20003481", form_module: "project-shq-form", router: 1,
+            url: "$A/modules/project-shq-data.html", Table: "astn-shq-project-20003481", form_module: "project-shq-form", router: 1,
             child_panel: "panel-main-shq-astn"
         },
-        "project-shq-form": { url: "$A/components/project/project-shq-form.html", Table: "astn-shq-project-20003481" },
+        "project-shq-form": { url: "$A/modules/project-shq-form.html", Table: "astn-shq-project-20003481" },
 
         "participant-shq-data": {
-            url: "$A/components/participant/participant-shq-data.html", Table: "astn-shq-participant-20002391", form_module: "participant-shq-form",
+            url: "$A//modules/participant-shq-data.html", Table: "astn-shq-participant-20002391", form_module: "participant-shq-form",
             child_panel: "panel-child-shq-astn",
             questionnaire_setup: "online-questionnaire-setup-shq-astn",
             online_questionnaire: "online-questionnaire-app-shq-astn",
             participant_id: { field1: "Local_ID", field2: "Initials" }
         },
-        "participant-shq-form": { url: "$A/components/participant/participant-shq-form.html", Table: "astn-shq-participant-20002391" },
+        "participant-shq-form": { url: "$A//modules/participant-shq-form.html", Table: "astn-shq-participant-20002391" },
 
         "online-questionnaire-setup-shq-astn": { url: "$A/online-questionnaire/components/online-questionnaire-setup.html", Table: "astn-shq-participant-20002391" },
         "online-questionnaire-app-shq-astn": { url: "$A/online-questionnaire/index.html" },
