@@ -70,7 +70,7 @@
 			})
 			//-------------------------------------
 			m.before_submit=function(data,index){
-				index.I1=$vm.astn_current_project_record.Data.Site+"-"+$vm.astn_current_project_record.UID;
+				index.I1=$vm.astn_current_project_record.UID;
 				var I2=$('#F__ID input[name=Randomisation_Number').val();	if(I2!='' && I2!='-') index.I2=parseInt(I2);
 			}
 			//-------------------------------------
