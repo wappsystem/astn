@@ -26,9 +26,21 @@
             $('#D__ID').on('load',function(){
                 $('#panel__ID li').hide();
 				$('#participant__ID').show();
-				$('#project__ID').text(m.input.record.Data.project_name);
+				//$('#project__ID').text(m.input.record.Data.project_name);
 				//alert(JSON.stringify(m.input.record));
-                $vm.request({cmd:"find",table:'astn-shq-project-20003481',query:{'UID':m.input.proj},sort:{I1:-1},skip:0,limit:1},function(res){
+				participant_record=m.input.record;
+    			if(participant_record==undefined){
+    				$('#info__ID').text("No individual participant info was found.");
+    				return;
+				}
+    			var info="Project: "+$vm.astn_current_project_name+" | Participant: "+participant_info(participant_record);
+    			if(old_info!=info){
+    				old_info=info;
+    				set_counting();
+    			}
+    			$('#info__ID').text(info);
+			//--------------------------------------------------------
+			$vm.request({cmd:"find",table:'astn-shq-project-20003481',query:{'UID':m.input.proj},sort:{I1:-1},skip:0,limit:1},function(res){
                     if(res.result.length>0){
 						if(res.result[0].Data.Consent=='on') $('#Consent__ID').show();
 						if(res.result[0].Data.Background_Information=='on') $('#Background_Information__ID').show();
@@ -121,20 +133,6 @@
 				})
     		}
     		//---------------------------------------------
-    		$('#D__ID').on('load',function(){
-				participant_record=m.input.record;
-    			if(participant_record==undefined){
-    				$('#info__ID').text("No individual participant info was found.");
-    				return;
-				}
-    			var info="Participant: "+participant_info(participant_record);
-    			if(old_info!=info){
-    				old_info=info;
-    				set_counting();
-    			}
-    			$('#info__ID').text(info);
-    		})
-    		//--------------------------------------------------------
     		$('#count__ID').on('click',function(){
     			clear_counting();
     			var N=0;
@@ -186,62 +184,67 @@
 			//--------------------------------------------------------
     	}
     </script>
-    <style>
-        #toolbar__ID{
-    		background-color:#ccc;
-    		padding-left:10px;
-    		margin-bottom:0px;
-    		overflow:hidden'
-    	}
-        #toolbar__ID .form-inline > * {
-            margin-right:5px;
-        }
-    	@media screen and (max-width:768px){
-    		#toolbar__ID{
-    			padding: 3px 10px;
-    		}
-    		#toolbar__ID div{
-    			padding-left:3px;
-    		}
-    	}
-        #D__ID{
-    		background-color:#fff;
-    		height:100%;
-    		overflow: auto;
-    		animation: vm_module_fadein 1.0s;
-    	}
-        #panel__ID{
-    		padding:10px 0 0 20px;
-            font-size:14px;
-    	}
-    	#panel__ID a {
-    		text-decoration: none;
-    	}
-    	#panel__ID a:link {
-    		color:#555;
-    	}
-    	#panel__ID a:visited {
-    		color:#555;
-    	}
-    	#panel__ID a:hover {
-    		color:red;
-    	}
-    	#panel__ID a:active {
-    		color:#555;
-    	}
-        .nav__ID{
-	        padding:6px 26px 6px 6px;
-	        float:left;
-	    }
-	    .nav__ID span{
+	<style>
+		#toolbar__ID{
+			font-family: 'Roboto Slab';
+			background-color:#ccc;
+			margin-bottom:0px;
+			overflow:hidden;
+			padding: 5px 0 5px 10px;
+		}
+		#toolbar__ID .form-inline > * {
+			margin-right:5px;
+		}
+		@media screen and (max-width:768px){
+			#toolbar__ID{
+				padding: 3px 10px;
+			}
+			#toolbar__ID div{
+				padding-left:3px;
+			}
+		}
+		#D__ID{
+			background-color:#fff;
+			height:100%;
+			overflow: auto;
+			animation: vm_module_fadein 1.0s;
+		}
+		#panel__ID{
+			font-family: 'Roboto Slab';
+			padding:20px 0 0 20px;
+		}
+		#panel__ID a {
+			text-decoration: none;
+		}
+		#panel__ID a:link {
+			color:#555;
+		}
+		#panel__ID a:visited {
+			color:#555;
+		}
+		#panel__ID a:hover {
+			color:red;
+		}
+		#panel__ID a:active {
+			color:#555;
+		}
+		.nav__ID{
+			padding:6px 26px 6px 6px;
+			float:left;
+		}
+		.nav__ID span{
 			color:#283f55;
 			font-weight: bold;
 			margin:3px 10px;
-	    }
-    	@media screen and (max-width:768px){
-    		#panel__ID{
-    			padding:10px 0 0 10px;
-    		}
-    	}
-    </style>
+		}
+		.count_marker__ID{
+			background-color:#fff;
+			font-size:12px;
+		}
+		@media screen and (max-width:768px){
+			#panel__ID{
+				padding:10px 0 0 10px;
+			}
+		}
+	</style>
 </div>
