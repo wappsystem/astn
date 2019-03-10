@@ -2,7 +2,7 @@
 var participant_name=function(record){ if(record.Data.Initials!=undefined) return record.UID+' '+record.Data.Initials; else return record.UID;}
 //-------------------------------------
 //auto select particpant
-var autocomplete_req_p={cmd:"find",table:$vm.module_list['participant-shq-data'].Table,options:{},skip:0,limit:10}
+var autocomplete_req_p={cmd:"find",table:$vm.module_list['participant-shq-data'].Table,query:{'I1':$vm.astn_current_project_record.UID},options:{},skip:0,limit:10}
 var autocomplete_callback_p=function(items){ $("#F__ID input[name=Participant_uid]").val(items["UID"]);}
 var autocomplete_list_p=function(records){
     var items=[];

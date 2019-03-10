@@ -18,7 +18,7 @@
         },
         "participant-shq-form": { url: "$A//modules/participant-shq-form.html", Table: "astn-shq-participant-20002391" },
 
-        "online-questionnaire-setup-shq-astn": { url: "$A/online-questionnaire/components/online-questionnaire-setup.html", Table: "astn-shq-participant-20002391" },
+        "online-questionnaire-setup-shq-astn": { url: "$A/modules/online-questionnaire-setup.html", Table: "astn-shq-participant-20002391" },
         "online-questionnaire-app-shq-astn": { url: "$A/online-questionnaire/index.html" },
 
         "notes": { url: "$A/modules/notes.html" },
@@ -58,7 +58,7 @@
         "fosq-astn-data": { url: "$A/modules/fosq-astn-data.html", Table: "fosq-astn-20002413", form_module: "fosq-astn-form" },
         "fosq-astn-form": { url: "$A/modules/fosq-astn-form.html", Table: "fosq-astn-20002413", task_name:"Functional Outcomes of Sleep Questionnaire" },
         "psqi-astn-data": { url: "$A/modules/psqi-astn-data.html", Table: "psqi-astn-20003576", form_module: "psqi-astn-form" },
-        "psqi-astn-form": { url: "$A/modules/psqi-astn-form.html", Table: "psqi-ast-20003576", task_name:"Pittsburgh Sleep Quality Index" },
+        "psqi-astn-form": { url: "$A/modules/psqi-astn-form.html", Table: "psqi-astn-20003576", task_name:"Pittsburgh Sleep Quality Index" },
         "phq-astn-data": { url: "$A/modules/phq-astn-data.html", Table: "phq-astn-20002414", form_module: "phq-astn-form" },
         "phq-astn-form": { url: "$A/modules/phq-astn-form.html", Table: "phq-astn-20002414", task_name:"Patient Health Questionnaire (PHQ-9)" },
         "gad7-astn-data": { url: "$A/modules/gad7-astn-data.html", Table: "gad7-astn-20002415", form_module: "gad7-astn-form" },
@@ -78,8 +78,8 @@
         "mva-astn-data": { url: "$A/modules/mva-astn-data.html", Table: "mva-astn-20002421", form_module: "mva-astn-form" },
         "mva-astn-form": { url: "$A/modules/mva-astn-form.html", Table: "mva-astn-20002421", task_name:"Motor Vehicle Accidents" },
         "wa-astn-data": { url: "$A/modules/wa-astn-data.html", Table: "wa-astn-20002422", form_module: "wa-astn-form" },
-        "wa-astn-form": { url: "$A/modules/wa-astn-form.html", Table: "wa-astn-20002422", task_name:"Workplace_Accidents" },
-        "than-you-astn-form": { url: "$A/modules/than-you-astn-form.html" }
+        "wa-astn-form": { url: "$A/modules/wa-astn-form.html", Table: "wa-astn-20002422", task_name:"Workplace Accidents" },
+        "thank-you-astn-form": { url: "$A/modules/thank-you-astn-form.html", task_name:"Thank You" }
     }
     for (m in modules) { $vm.module_list[m] = modules[m]; }
 })();
