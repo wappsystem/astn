@@ -84,15 +84,13 @@
                 var tab="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                 var dot='&#8226;&nbsp;';
                 var txtA="";
-                //var txt="<tr><th style='width:30px'>No.</th><th>Table ID</th><th>Task</th><th style='width:20px'></th></tr>";
-                var txt='<div class="form-group"><h4>Select questionnaires for the project</h4><div class="questiongroup"><fieldset>';
+                var txt="<tr><th style='width:30px'>No.</th><th>Table ID</th><th>Task</th><th style='width:20px'></th></tr>";
                 var No=0;
                 for(visit in q_list){
                     //No++;
                     var task=visit;
                     var pid="";
-                    //txt+="<tr><td></td><td></td><td>Select/Deselect all questionnaires</td><td><input data-visit='"+task+"' type=checkbox class=visit__ID /></td></tr>";
-                    txt+='<label class="checkboxes"><input type="checkbox" data-visit='+task+' ><span class="check_checkmark"></span> Select/Deselect all questionnaires</label><br>'
+                    txt+="<tr><td></td><td></td><td>Select/Deselect all questionnaires</td><td><input data-visit='"+task+"' type=checkbox class=visit__ID /></td></tr>";
                     var visit_array=q_list[visit];
                     for(k in visit_array){
                         No++;
@@ -100,13 +98,11 @@
                         var mm=$vm.module_list[pid];
                         task="not found";
                         if(mm!=undefined) task=$vm.module_list[pid].task_name;
-                        //txt+="<tr><td>"+No+"</td><td>"+pid+"</td><td>"+tab+dot+task+"</td><td><input id=task__ID"+pid+" type=checkbox class=item__ID /></td></tr>";
-                        txt+='<label class="checkboxes"><input type="checkbox" id=task__ID'+pid+' ><span class="check_checkmark"></span> '+task+'</label><br>'
+                        txt+="<tr><td>"+No+"</td><td>"+pid+"</td><td>"+tab+dot+task+"</td><td><input id=task__ID"+pid+" type=checkbox class=item__ID /></td></tr>";
                     }
                 }
-                txt+='</fieldset></div></div>'
-                //$('#table_grid__ID').html(txt);
-                //$('#table_grid__ID th:nth-child(2)').hide();$('#table_grid__ID td:nth-child(2)').hide();
+                $('#table_grid__ID').html(txt);
+                $('#table_grid__ID th:nth-child(2)').hide();$('#table_grid__ID td:nth-child(2)').hide();
                 set_box();
                 //check and uncheck group checkbox
                 $('.visit__ID').on('click',function(){
