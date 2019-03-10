@@ -1,29 +1,34 @@
 <div id=D__ID>
-    <div id=form_container__ID>
-        <div id=header__ID>
-    		
-    	</div>
-        <form id=F__ID>
-            <div class="container">
-                <div class="row">
-                    <table id=table_form__ID>
-                        <tr id=tr_table_grid__ID><td colspan=2><table id=table_grid__ID></table></td></tr>
-                    </table>
-                </div>
-                <div class="row">
-    				<div class="col">
-    					<textarea name="List" class=form-control readonly style='margin-top:16px'></textarea>
-    				</div>
-    			</div>
-                <br>
-    			<div class="row">
-    				<div class=col>
-    					<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
-    				</div>
-    			</div>
-            </div>
-        </form>
-    </div>
+	<!--third html start -->
+	<div class="container mt-95 mb-3" id="form_container__ID">
+		<div class="row">
+			<!-- form container start -->
+			<div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+				<div class="row">
+					<div class="col-12">
+						<!-- form start -->
+						<form id="F__ID">
+							<h3 id=header__ID>Projects</h3>
+                            <div class="form-group">
+                                <h4>Select questionnaires for the project</h4>
+                                <div class="questiongroup" id=quest_list__ID>
+                                    <fieldset><label class="checkboxes"><input type="checkbox" name="Consent"><span class="check_checkmark"></span> Consent</label><br></fieldset>
+                                </div>
+                            </div>
+							<div class="form-group">
+								<fieldset class="">
+									<label style="width:100%"><span class="">Table List</span>
+										<textarea class="form-control w-100" name=List></textarea>
+									</label><br>
+								</fieldset>
+							</div>
+                            <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+                        </form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     <script>
         function F__ID(){
             //-------------------------------------
@@ -48,7 +53,7 @@
 				        if(res.result[0].Data.Medical_History=='on') {q_list.Sleep_Health_Questionnaires[i]='medical-history-astn-form';i++}
 				        if(res.result[0].Data.Sleep_HQDP=='on') {q_list.Sleep_Health_Questionnaires[i]='sleep-disorder-patterns-astn-form';i++}
 				        if(res.result[0].Data.Sleep_Hygiene_Index=='on') {q_list.Sleep_Health_Questionnaires[i]='sleep-hygiene-index-astn-form';i++}
-				        if(res.result[0].Data.Family_Sleep_History=='on') {q_list.Sleep_Health_Questionnaires[i]='social-history-astn-form';i++}
+				        if(res.result[0].Data.Family_Sleep_History=='on') {q_list.Sleep_Health_Questionnaires[i]='family-sleep-history-astn-form';i++}
 				        if(res.result[0].Data.Medications=='on') {q_list.Sleep_Health_Questionnaires[i]='medications-astn-form';i++}
 				        if(res.result[0].Data.Recreational_Drugs=='on') {q_list.Sleep_Health_Questionnaires[i]='rec-drug-astn-form';i++}
 				        if(res.result[0].Data.ESS=='on') {q_list.Sleep_Health_Questionnaires[i]='ess-astn-form';i++}
@@ -77,22 +82,19 @@
 			}
 			//-------------------------------------
             m.before_submit=function(data){
+                alert($('#F__ID textarea[name=List]').val())
                 data['List']=$('#F__ID textarea[name=List]').val();
+                return false;
 			}
 			//-------------------------------------
             var set_check_list=function(){
-                var tab="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                var dot='&#8226;&nbsp;';
-                var txtA="";
-                //var txt="<tr><th style='width:30px'>No.</th><th>Table ID</th><th>Task</th><th style='width:20px'></th></tr>";
-                var txt='<div class="form-group"><h4>Select questionnaires for the project</h4><div class="questiongroup"><fieldset>';
+                var txt='';
                 var No=0;
                 for(visit in q_list){
                     //No++;
                     var task=visit;
                     var pid="";
-                    //txt+="<tr><td></td><td></td><td>Select/Deselect all questionnaires</td><td><input data-visit='"+task+"' type=checkbox class=visit__ID /></td></tr>";
-                    txt+='<label class="checkboxes"><input type="checkbox" data-visit='+task+' ><span class="check_checkmark"></span> Select/Deselect all questionnaires</label><br>'
+                    txt+='<fieldset><label class="checkboxes"><input type="checkbox" data-visit='+task+' id=fill-empty__ID><span class="check_checkmark"></span> Select/Deselect all questionnaires</label><br></fieldset><hr>'
                     var visit_array=q_list[visit];
                     for(k in visit_array){
                         No++;
@@ -100,16 +102,13 @@
                         var mm=$vm.module_list[pid];
                         task="not found";
                         if(mm!=undefined) task=$vm.module_list[pid].task_name;
-                        //txt+="<tr><td>"+No+"</td><td>"+pid+"</td><td>"+tab+dot+task+"</td><td><input id=task__ID"+pid+" type=checkbox class=item__ID /></td></tr>";
-                        txt+='<label class="checkboxes"><input type="checkbox" id=task__ID'+pid+' ><span class="check_checkmark"></span> '+task+'</label><br>'
+                        txt+='<fieldset><label class="checkboxes"><input type="checkbox" id=task__ID'+pid+' class=item__ID><span class="check_checkmark"></span> '+task+'</label><br></fieldset>'
                     }
                 }
-                txt+='</fieldset></div></div>'
-                //$('#table_grid__ID').html(txt);
-                //$('#table_grid__ID th:nth-child(2)').hide();$('#table_grid__ID td:nth-child(2)').hide();
+                $('#quest_list__ID').html(txt);
                 set_box();
                 //check and uncheck group checkbox
-                $('.visit__ID').on('click',function(){
+                $('#fill-empty__ID').on('click',function(){
                     var data_visit=$(this).attr('data-visit');
                     var visit_array=q_list[data_visit];
                     if( $(this).prop('checked')==true){
@@ -144,11 +143,11 @@
             }
             //---------------------------------------------
             var set_check=function(key){
-                $('#table_grid__ID tr').each(function(index){
+                $('#table_grid__ID input').each(function(index){
                     if(index>0){
-                        var k=$(this).children('td').eq(1).html().trim();
+                        var k=$(this).attr('id')
                         if(k==key){
-                            $(this).children('td').eq(3).find(">:first-child").attr('checked','checked');
+                            $(this).prop('checked');
                         }
                     }
                 })
@@ -156,11 +155,11 @@
             //---------------------------------------------
             var set_list=function(){
                 var txt="";
-                $('#table_grid__ID tr').each(function(index){
+                $('#quest_list__ID input').each(function(index){
                     if(index>0){
-                        var key=$(this).children('td').eq(1).html();
+                        var key=$(this).attr('id');
                         if(key!==""){
-                            var ro=$(this).children('td').eq(3).find(">:first-child").prop('checked');
+                            var ro=$(this).prop('checked');
                             if(ro===true){
                                 if(txt!='') txt+=",";
                                 txt+=key.trim();
@@ -174,118 +173,308 @@
         }
     </script>
     <style>
-    	#toolbar__ID{
-    		background-color:#ccc;
-    		padding:5px 0 5px 10px;
-    		overflow:hidden'
-    	}
-    	#tb__ID{
-    		/*min-width:100px;*/
-    		border-collapse: collapse;
-    		font-size: 13px;
-    		font-family: Helvetica, Arial, sans-serif;
-    	}
-    	#tb__ID td{
-    		border:1px solid #bbb;
-    		padding:6px;
-    		white-space: pre;
-    	}
-    	#title__ID{
-    		font-weight:700;
-    	}
-    	@media print {
-    		body * {
-    			visibility: hidden;
-    		}
-    		#tb__ID, #tb__ID * {
-    			visibility: visible;
-    		}
-    		#tb__ID {
-    			position: absolute;
-    			left: 0;
-    			top: 0;
-    		}
-    	}
-    	.tab__ID{
-    		width:30px;
-    		display:inline-block;
-    	}
-    	#table_form__ID {width:100%;font-size:9pt; font-family:Verdana; margin:0px; border: 0px #B8BDBF solid; border-spacing:0; border-collapse: collapse; table-layout: automatic;}
-    	#table_form__ID td{ border: 1px #B8BDBF solid; color: #333333; border-collapse: collapse; text-align: left; padding: 1px;padding-right:4px; vertical-align:top;}
-    	#table_form__ID td:first-child{padding:3px;}
-    	#table_form__ID input,textarea, select{ font-size:9pt!Important; font-family:Verdana!Important;}
-    	#table_form__ID input[type=text],textarea{ margin:1px;padding:1px; border-style:inset; border-width:0px; width:100%;overflow:hidden;}
-    	#table_fomn__ID input[type=checkbox]{margin:3px!Important;}
-    	#table_form__ID textarea{height:36px;}
-    	#table_form__ID td:first-child{padding-left:5px;}
-    	#table_form__ID td:nth-child(2){vertical-align:middle;}
-
-    	#table_grid__ID{	width:100%; border: 1px #aaaaaa solid; font-size:9pt; font-family:Verdana; border-spacing: 0px;border-collapse: collapse;}
-    	#table_grid__ID th{ border: 1px solid #ddd; padding:2px; margin:1px; text-align:left; background-color:#eee;/*#9ab6da;*/ white-space: nowrap;}
-    	#table_grid__ID td{ border: 1px solid #ddd; padding:2px; margin:0px; }
-    	#table_grid__ID tr:hover {background-color: #ddd;}
-
-    	.header__ID {background-color:#B8BDBF;color:#000;text-align:center!Important;font-size:22px;padding:12px!Important;}
-
-
-        #D__ID{
-    		height:100%;
-    		overflow:auto;
-    		animation: vm_module_fadein 1.0s;
-            background-color: #fff;
-    	}
-        #form_container__ID{
-            margin-top:20px;
-    		max-width: 800px;
-    		margin-left: auto;
-    		margin-right: auto;
-    		font-family: Verdana,sans-serif;
-        	font-size: 15px;
-        	line-height: 1.5;
-    	}
-        #F__ID{
-    		border:1px solid #bbb;
-            border-top-width: 0;
-    		padding:6px 15px 20px 15px;
-    	}
-    	#header__ID{
-    		background-color:#727b84;
-    		color:#fff;
-    		padding:10px 15px 10px 15px;
-    		font-size:120%;
-            border:1px solid #bbb;
-            border-bottom-width: 0;
-    	}
-        .row__ID{
-    		padding:6px 0;
-    	}
-    	.row__ID:hover{
-    		background-color: rgba(0,0,0,0.1);
-    	}
-    	.row__ID span{
-            font-weight:bold;
-        	display: inline-block;
-        	padding: 5px 0;
-    	}
-    	.radio__ID{
-    		padding-left:30px;
-    	}
-    	.radio__ID label{
-    		margin: 1px 0;
-    	}
-    	.radio__ID label:hover{
-    		cursor:pointer;
-    		background-color: rgba(0,0,0,0.3);
-    	}
-    	.ck__ID label:hover{
-    		cursor:pointer;
-    		background-color: rgba(0,0,0,0.3);
-    	}
-    	@media screen and (max-width:768px){
-    		#form_container__ID{
-    			padding:20px 10px 50px 10px;
-    		}
-    	}
+        #D__ID .formbox h3 {
+            font-family: 'Roboto Slab';
+            font-size: 24px;
+            color: #FCFBF5;
+            letter-spacing: 0;
+            display: block;
+            background-color: #00263A;
+            padding: 15px;
+            border-radius: 3px 3px 0 0;
+            margin-top: -5px
+        }
+        #D__ID .formbox h7 {
+            font-family: 'Roboto Slab';
+            font-size: 16px;
+            color: #FCFBF5;
+            letter-spacing: 0;
+            display: block;
+            background-color: #00263A;
+            padding: 5px 15px;
+            border-radius: 3px 3px 0 0;
+            margin-top: -5px
+        }
+        /* TOP OF FORM MARGIN */
+        #D__ID .mt-95 {
+            margin-top: 15px !important
+        }
+        #D__ID .form-group {
+            display: block !important;
+            border-bottom: 1px solid #E5EEF0 !important 
+        }
+        #D__ID .form-group h4 {
+            font-family: 'Roboto Slab';
+            font-size: 16px;
+            color: #00263A;
+            letter-spacing: 0;
+            line-height: 28px;
+        }
+        #D__ID .form-group h6 {
+            font-family: 'Roboto Slab';
+            font-size: 14px;
+            color: #00263A;
+            letter-spacing: 0;
+            line-height: 28px;
+        }
+        #D__ID .small-label {
+            font-family: 'Nunito Sans';
+            font-weight:600;
+            font-size: 14px;
+            color: #444645;
+        }
+        #D__ID label {
+            font-family: 'Nunito Sans';
+            font-weight:600;
+            font-size: 14px;
+            color: #444645;
+            line-height: 21px;
+        }
+        #D__ID input[type="radio"] {
+            margin-right: 5px !important
+        }
+        #D__ID .form-control::-webkit-input-placeholder{color:#ccc;}
+        #D__ID .form-control:-ms-input-placeholder{color:#ccc;}
+        #D__ID .form-control::-moz-placeholder{color:#ccc;opacity: 1;}
+        #D__ID .formbox {
+            background-color: white;
+            padding: 0px !important;
+            border-radius: 3px 3px 3px 3px !important
+        }
+        #D__ID .form-group {
+            padding: 5px 15px !important;
+            margin-bottom: 0px !important
+        }
+        #D__ID .form-group:hover {
+            background-color: #FCFBF5
+        }
+        /* SUBMIT BUTTON */
+        #D__ID .btn-primary, #D__ID .btn-primary:active, #D__ID .btn-primary:visited, #D__ID .btn-primary:focus {
+            background-color: #00263A;
+            border-color: #00263A;
+            font-family: 'Nunito Sans';
+            font-weight: lighter;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            padding: 16px 35px;
+            margin: 15px;
+        }
+        #D__ID .btn-primary:hover {
+            background-color: #506A88;
+            border-color: #506A88;
+            font-family: 'Nunito Sans';
+            font-weight: lighter;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            padding: 16px 35px;
+            margin: 15px;
+        }
+        #D__ID .btn-outline-light {
+            font-family: 'Nunito Sans';
+            font-weight: lighter;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+            text-align: center;
+            line-height: 18px;
+            text-transform: uppercase;
+            border-radius: 15px;
+            border-width: 2px;
+            padding-left: 25px;
+            padding-right: 25px
+        }
+        #D__ID .btn-outline-light:hover {
+            color: #EA7859;
+        }
+        #D__ID p.note {
+            font-family: 'Nunito Sans';
+            font-weight: lighter;
+            font-size: 16px;
+            color: #939597;
+            margin-left: 15px;
+        }
+        /* RADIO BUTTONS */
+        #D__ID .radiobuttons {
+            text-align:center;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            padding-left: 30px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #D__ID .radiobuttons input {
+            position: absolute !important;
+            opacity: 0 !important;
+            cursor: pointer;
+        }
+        #D__ID .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #C9C9C9;
+            border-radius: 50%;
+            color:#fff;
+        }
+        #D__ID .radiobuttons:hover input ~ .checkmark {
+            background-color: #506A88;
+        }
+        #D__ID .radiobuttons input:checked ~ .checkmark {
+            background-color: #EA7859;
+        }
+        #D__ID .checkmark:after {
+            content: "";
+            position: absolute !important;
+            display: none;
+        }
+        /* Show the indicator (dot/circle) when checked */
+        #D__ID .radiobuttons input:checked ~ .checkmark:after {
+            display: block !important;
+        }
+        /* Style the indicator (dot/circle) */
+        #D__ID .container .checkmark:after {
+            top: 7px;
+            left: 7px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white !important;
+        }
+        #D__ID .container .checkmark.no-dot:after {
+            width: 0;
+            height: 0;
+        }
+        /* CHECK BOX */
+        #D__ID .checkboxes {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            padding-left: 30px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #D__ID .checkboxes input {
+            position: absolute !important;
+            opacity: 0 !important;
+            cursor: pointer;
+        }
+        #D__ID .check_checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #C9C9C9;
+            border-radius: 0%;
+        }
+        #D__ID .checkboxes:hover input ~ .check_checkmark {
+            background-color: #506A88;
+        }
+        #D__ID .checkboxes input:checked ~ .check_checkmark {
+            background-color: #EA7859;
+        }
+        #D__ID .check_checkmark:after {
+            content: "";
+            position: absolute !important;
+            display: none;
+        }
+        /* Show the indicator (dot/circle) when checked */
+        #D__ID .checkboxes input:checked ~ .check_checkmark:after {
+            display: block !important;
+        }
+        /* Style the indicator (dot/circle) */
+        #D__ID .container .check_checkmark:after {
+            top: 0px;
+            left: 6px;
+            color:white;
+            content:"✔";
+        }
+        #D__ID .form-group input[type=text] {
+            font-family: 'Nunito Sans';
+            font-size: 16px;
+            color: #6D6F72;
+        }
+        #D__ID .form-group input[type=tel] {
+            font-family: 'Nunito Sans';
+            font-size: 16px;
+            color: #6D6F72;
+        }
+        #D__ID .form-group input[type=email] {
+            font-family: 'Nunito Sans';
+            font-size: 16px;
+            color: #6D6F72;
+        }
+        #D__ID .form-group input[type=number] {
+            font-family: 'Nunito Sans';
+            font-size: 16px;
+            color: #6D6F72;
+        }
+        #D__ID .form-group select {
+            font-family: 'Nunito Sans';
+            font-size: 16px;
+            color: #6D6F72;
+        }
+        #D__ID .form-group textarea {
+            font-family: 'Nunito Sans';
+            font-size: 16px;
+            color: #6D6F72;
+        }
+        #D__ID fieldset.subquestions legend {
+            font-family: 'Nunito Sans';
+            font-size: 16px;
+            color: #00263A;
+            line-height: 21px;
+            padding-top: 20px;
+        }
+        #D__ID .form-group .questiongroup {
+            margin-left: 15px;
+        }
+        #D__ID .form-group .questiongroup label.radiobuttons {
+            margin-right: 10px;
+        }
+        #D__ID .labelleft {
+            margin-left:-15px;
+        }
+        #D__ID .labelright {
+            margin-left:-15px;
+        }
+        @media (min-width: 576px) {
+            #D__ID  fieldset.subquestions br { display: none; }
+            #D__ID label {
+                margin-left:0;
+            }
+            #D__ID .labelleft {
+                margin-left:0;
+            }
+        }
+        @media (min-width: 1200px) {
+            .container {max-width:900px}
+        }
+        @media (min-width: 992px) {
+            .container {max-width:900px}
+        }
+        @media (min-width: 768px) {
+            .container {max-width:900px}
+        }
+        @media (min-width: 576px) {
+            .container {max-width:900px}
+        }
 
     </style>
 </div>
