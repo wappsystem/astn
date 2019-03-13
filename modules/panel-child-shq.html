@@ -15,6 +15,7 @@
     	function F__ID(){
 			//-------------------------------------
 			var m=$vm.module_list['__MODULE__'];
+			if(m.prefix==undefined) m.prefix="";
     		var old_info='';
     		var participant_record;
     		var count={}
@@ -82,8 +83,8 @@
                 if(href!=undefined){
                     href=href.replace('?\/','');
                     href=href.replace(/\//g,'_');
-                    if(app==undefined) $vm.load_module(href,'',{record:participant_record});
-                    else if($vm.module_list[href]!=undefined) window.open($vm.module_list[href].url);
+                    if(app==undefined) $vm.load_module(m.prefix+href,'',{record:participant_record});
+                    else if($vm.module_list[m.prefix+href]!=undefined) window.open($vm.module_list[m.prefix+href].url);
                     else alert("The '"+ href +"' is not defined in the module list");
                 }
             })

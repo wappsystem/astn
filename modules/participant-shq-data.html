@@ -32,13 +32,13 @@
                     case '_Data_Entry':
                         td.html("<u style='cursor:pointer'>Data Entry</u>");
                         td.find('u').on('click',function(){
-    						$vm.load_module(m.child_panel,'',{record:records[I],proj:m.input.proj});
+    						$vm.load_module(m.prefix+m.child_panel,'',{record:records[I],proj:m.input.proj});
                         });
                         break;
                     case '_Setup':
                         td.html("<u style='cursor:pointer'>Setup</u>");
                         td.find('u').on('click',function(){
-    						$vm.load_module(m.questionnaire_setup,'',{record:records[I],proj:m.input.proj });
+    						$vm.load_module(m.prefix+m.questionnaire_setup,'',{record:records[I],proj:m.input.proj });
                         });
                         break;
                     case '_Questionnaire':
@@ -49,7 +49,7 @@
                             var d="";  if(window.location.toString().indexOf('_d=1')!=-1) d="&_d=1";
                             var p="";  if(window.location.toString().indexOf('_p=1')!=-1) p="&_p=1";
                             var u="?username="+records[I].UID+"-"+records[I].Data.Initials+"&password="+records[I].Data._Password;
-    						var q_url=$vm.module_list[m.online_questionnaire].url+u+db+d+p;
+    						var q_url=$vm.module_list[m.prefix+m.online_questionnaire].url+u+db+d+p;
     						window.open(q_url);
                         });
                         break;

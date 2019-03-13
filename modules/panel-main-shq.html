@@ -23,6 +23,7 @@
         function F__ID(){
             //--------------------------------------------------------
             var m=$vm.module_list['__MODULE__'];
+			if(m.prefix==undefined) m.prefix="";
             //--------------------------------------------------------
 			$vm.module_list["__MODULE__"].show=function(){
                 document.title="Control Panel | "+$vm.default_title;
@@ -82,7 +83,7 @@
                 else if(href!=undefined){
                     href=href.replace('?\/','');
 					href=href.replace(/\//g,'_');
-                    if(app==undefined) $vm.load_module(href,'',{proj:m.input.record.UID});
+                    if(app==undefined) $vm.load_module(m.prefix+href,'',{proj:m.input.record.UID});
                     else alert("The '"+ href +"' is not defined in the module list");
                 }
             })

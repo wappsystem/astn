@@ -22,7 +22,7 @@
                     case '_shq_entry':
                         td.html("<u style='cursor:pointer'>Access Project</u>");
                         td.find('u').on('click',function(){
-    						$vm.load_module(m.child_panel,'',{record:records[I]});
+    						$vm.load_module(m.prefix+m.child_panel,'',{record:records[I]});
                         });
                         break;
                 }
