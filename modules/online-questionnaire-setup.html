@@ -82,9 +82,8 @@
 			}
 			//-------------------------------------
             m.before_submit=function(data){
-                alert($('#F__ID textarea[name=List]').val())
                 data['List']=$('#F__ID textarea[name=List]').val();
-                return false;
+                return;
 			}
 			//-------------------------------------
             var set_check_list=function(){
@@ -143,10 +142,10 @@
             }
             //---------------------------------------------
             var set_check=function(key){
-                $('#table_grid__ID input').each(function(index){
+                $('#quest_list__ID input').each(function(index){
                     if(index>0){
                         var k=$(this).attr('id')
-                        if(k==key){
+                        if(k.indexOf(key)>0){
                             $(this).prop('checked');
                         }
                     }
@@ -154,6 +153,27 @@
             }
             //---------------------------------------------
             var set_list=function(){
+                var txt="";
+                $('#quest_list__ID input').each(function(index){
+                    if(index>0){
+                        var key=$(this).attr('id');
+                        if(key!==""){
+                            if( $(this).prop('checked')==true){
+                                for(var k=0;k<q_list.Sleep_Health_Questionnaires.length;k++){
+                                    var pid=q_list.Sleep_Health_Questionnaires[k];
+                                    if(key.indexOf(pid)>0){
+                                        if(txt!='') txt+=",";
+                                        txt+=pid;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                $('#F__ID textarea[name=List]').val(txt);
+            }
+            //---------------------------------------------
+/*            var set_list=function(){
                 var txt="";
                 $('#quest_list__ID input').each(function(index){
                     if(index>0){
@@ -169,7 +189,7 @@
                 });
                 $('#F__ID textarea[name=List]').val(txt);
             }
-            //---------------------------------------------
+*/          //---------------------------------------------
         }
     </script>
     <style>
