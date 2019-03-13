@@ -1,6 +1,4 @@
 //-------------------------------------
-var participant_name=function(record){ if(record.Data.Initials!=undefined) return record.UID+' '+record.Data.Initials; else return record.UID;}
-//-------------------------------------
 var wait1=function(){
     if($vm.online_questionnaire!=1){
         //auto select particpant
@@ -18,13 +16,8 @@ var wait1=function(){
             }
             return items;
         }
-      
         $vm.autocomplete($('#Participant__ID'),autocomplete_req_p,autocomplete_list_p,autocomplete_callback_p);
     }
-}
-//-------------------------------------
-var wait1=function(){
-    $vm.autocomplete($('#Participant__ID'),autocomplete_req_p,autocomplete_list_p,autocomplete_callback_p);
 }
 //-------------------------------------
 var I=0; var loop_1=setInterval(function (){
@@ -53,11 +46,13 @@ m.load=function(){
     }
     //--------------------------
     var wait2=function(){
-        $('#F__ID input[name=Participant]').prop('readonly',false);
-        $('#F__ID input[name=Participant]').autocomplete( "enable" );
-        if($("#F__ID input[name=Participant_uid]").val()!=''){
-            $('#F__ID input[name=Participant]').prop('readonly',true);
-            $('#F__ID input[name=Participant]').autocomplete( "disable" );
+        if($vm.online_questionnaire!=1){
+            $('#F__ID input[name=Participant]').prop('readonly',false);
+            $('#F__ID input[name=Participant]').autocomplete( "enable" );
+            if($("#F__ID input[name=Participant_uid]").val()!=''){
+                $('#F__ID input[name=Participant]').prop('readonly',true);
+                $('#F__ID input[name=Participant]').autocomplete( "disable" );
+            }
         }
     }
     //--------------------------
@@ -70,7 +65,7 @@ m.load=function(){
 }
 //-------------------------------------
 m.before_submit=function(data,index){
-    index.I1=$vm.astn_current_project_record.UID;
+    //index.I1=$vm.astn_current_project_record.UID;
     if ($("#F__ID input[name=Participant]").val()=='' || $("#F__ID input[name=Participant_uid]").val()==''){
     $vm.alert("Please select a participant. Make sure Participant ID has a number.") 
     return false; 
