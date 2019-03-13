@@ -146,7 +146,7 @@
                     if(index>0){
                         var k=$(this).attr('id')
                         if(k.indexOf(key)>0){
-                            $(this).prop('checked');
+                            $("#task__ID"+key).prop('checked',true);
                         }
                     }
                 })
@@ -173,23 +173,6 @@
                 $('#F__ID textarea[name=List]').val(txt);
             }
             //---------------------------------------------
-/*            var set_list=function(){
-                var txt="";
-                $('#quest_list__ID input').each(function(index){
-                    if(index>0){
-                        var key=$(this).attr('id');
-                        if(key!==""){
-                            var ro=$(this).prop('checked');
-                            if(ro===true){
-                                if(txt!='') txt+=",";
-                                txt+=key.trim();
-                            }
-                        }
-                    }
-                });
-                $('#F__ID textarea[name=List]').val(txt);
-            }
-*/          //---------------------------------------------
         }
     </script>
     <style>

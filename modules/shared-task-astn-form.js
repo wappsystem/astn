@@ -30,9 +30,9 @@ m.load=function(){
     load();
     if($vm.online_questionnaire==1) $('#pdf__ID').hide();
 //--------------------------
-//alert(JSON.stringify(m.input))
 //alert(m.input.participant_record.Data.Local_ID)
-    if(m.input!=undefined && m.input.participant_record!=undefined){
+ /*   if(m.input!=undefined && m.input.participant_record!=undefined){
+        alert(1)
         //new from child panel
         $("#F__ID input[name=Participant]").val(m.input.participant_record.Data.Local_ID + ' '+m.input.participant_record.Data.Initials);
         $("#F__ID input[name=Participant_uid]").val(m.input.participant_record.UID);
@@ -59,6 +59,7 @@ m.load=function(){
     },100);
     //-------------------------------------
     if(m.load_2!=undefined) m.load_2();
+    */
 }
 //-------------------------------------
 m.before_submit=function(data,index){

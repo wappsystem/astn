@@ -8,7 +8,8 @@
             //-------------------------------------
             VmInclude:__COMPONENT__/g/grid.01.js       
             //-------------------------------------
-            //-------------------------------------
+            if(m.prefix==undefined) m.prefix="";
+           //-------------------------------------
             var fields="_ASTN_ID,Local_ID,Initials,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------

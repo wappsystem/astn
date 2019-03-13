@@ -12,12 +12,6 @@
     	</div>
 	</div>
 </div>
-<!-- <div id=panel__ID>
-    Please answer the following questionnaires. Follow the instruction on each of them.<br><br>
-	<div id=items__ID></div>
-</div>
-</div>-->
-
 <script>
 	function F__ID(){
 		//--------------------------------------------------------
@@ -107,8 +101,8 @@
 		            $li.html("<u style='cursor:pointer' m="+module+">"+task_name+"</u>");
 		            $li.find('u').on('click',function(){
 		                var m=$(this).attr('m');
-                        var record=$vm.vm['__ID'].input.record;
-						$vm.load_module(m,'',{participant_record:record,goback:1});
+						var participant_record=$vm.vm['__ID'].input.record;
+						$vm.load_module(m,'',{record:participant_record,goback:1});
 		            });
 		            return false; // break out the loop
 		        }
