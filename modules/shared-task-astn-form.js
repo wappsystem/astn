@@ -32,7 +32,7 @@ m.load=function(){
     if($vm.online_questionnaire==1) $('#pdf__ID').hide();
 //--------------------------
 //alert(JSON.stringify(m.input))
-//alert(m.input.participant_record.Data.Local_ID)
+//alert(m.input.participant_record.I1)
     if(m.input!=undefined && m.input.participant_record!=undefined){
         //new from child panel
         $("#F__ID input[name=Participant]").val(m.input.participant_record.Data.Local_ID + ' '+m.input.participant_record.Data.Initials);
@@ -65,7 +65,7 @@ m.load=function(){
 }
 //-------------------------------------
 m.before_submit=function(data,index){
-    //index.I1=$vm.astn_current_project_record.UID;
+    if(m.input.participant_record.I1!=undefined) index.I1=m.input.participant_record.I1;
     if ($("#F__ID input[name=Participant]").val()=='' || $("#F__ID input[name=Participant_uid]").val()==''){
     $vm.alert("Please select a participant. Make sure Participant ID has a number.") 
     return false; 
