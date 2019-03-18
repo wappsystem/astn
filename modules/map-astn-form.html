@@ -168,7 +168,6 @@
           var load2=m.load;
               m.load=function(){
               load2();
-              alert("Get Age, height, weight and sex from other records.")
               for(var i=0;i<8;i++){
                   set_selected_text(i+1)
               }
@@ -203,10 +202,22 @@
          //-------------------------------------
          var before_submit=m.before_submit;
               m.before_submit=function(data,index){
-              var age='';age='50'
-              var height='';height='190'
-              var weight='';weight='85';
-              var sex=''; sex='';
+              var age='';
+              var height='';
+              var weight='';
+              var sex='';
+              var parent_uid="";
+              parent=$("#D__ID input[name=Participant_uid]").val()
+              jQuery.ajaxSetup({async:false});
+              $vm.request({cmd:"find",table:$vm.module_list["background-information-astn-data"].Table,query:{"Data.Participant_uid":parent }},function(res){
+                if(res.result.length>0){
+                  height=res.result[0].Data.Height;
+                  weight=res.result[0].Data.Weight;
+                  sex=res.result[0].Data.gender;
+                  age=res.result[0].Data.AGE;
+                }
+              });
+              jQuery.ajaxSetup({async:true});
               var answ=0;
               var v1=0;
               var v2=0;
@@ -219,15 +230,18 @@
                       data.MAP="age, sex, height or/and weight is/are missing. Can't calculate MAP Score";
                   }
                   else{
+                      age=parseFloat(age);
+                      height=parseFloat(height);
+                      weight=parseFloat(weight);                      
                       if(sex=='0') sex=1; else sex=0;
-                      var index=(v1+v2+v3)/answ;
+                      var map_index=(v1+v2+v3)/answ;
                       var bmi=weight/height/height*100*100;
-                      var x=-8.160+1.229*index+0.163*bmi-0.028*index*bmi+0.032*age+1.278*sex;
+                      var x=-8.160+1.229*map_index+0.163*bmi-0.028*map_index*bmi+0.032*age+1.278*sex;
     	              data.MAP=(Math.exp(x)/(1+Math.exp(x))).toFixed(2);
                   }
               }
               else data.MAP='DK';
-              return before_submit(data,index);;
+              return before_submit(data,index);
           }
           //-------------------------------------
       }

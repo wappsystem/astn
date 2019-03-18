@@ -35,14 +35,17 @@ m.load=function(){
 //alert(m.input.participant_record.I1)
     if(m.input!=undefined && m.input.participant_record!=undefined){
         //new from child panel
+        m.I1=m.input.participant_record.I1
         $("#F__ID input[name=Participant]").val(m.input.participant_record.Data.Local_ID + ' '+m.input.participant_record.Data.Initials);
         $("#F__ID input[name=Participant_uid]").val(m.input.participant_record.UID);
     }
     else if(m.input!=undefined && m.input.record!=undefined){
+        m.I1=m.input.participant_record.I1
         //modify
     }
     else{
         //new with no parent
+        m.I1=$vm.astn_current_project_record.UID
     }
     //--------------------------
     var wait2=function(){
@@ -65,7 +68,7 @@ m.load=function(){
 }
 //-------------------------------------
 m.before_submit=function(data,index){
-    if(m.input.participant_record.I1!=undefined) index.I1=m.input.participant_record.I1;
+    index.I1=m.I1;
     if ($("#F__ID input[name=Participant]").val()=='' || $("#F__ID input[name=Participant_uid]").val()==''){
     $vm.alert("Please select a participant. Make sure Participant ID has a number.") 
     return false; 
