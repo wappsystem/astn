@@ -29,7 +29,10 @@ var I=0; var loop_1=setInterval(function (){
 var load=m.load;
 m.load=function(){
     load();
-    if($vm.online_questionnaire==1) $('#pdf__ID').hide();
+    if($vm.online_questionnaire==1) {
+        $('#pdf__ID').hide();
+        $('#participant_div__ID').hide();
+    }
 //--------------------------
 //alert(JSON.stringify(m.input))
 //alert(m.input.participant_record.I1)

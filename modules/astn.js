@@ -34,7 +34,7 @@
         "lifestyle-astn-data": { url: "$A/modules/lifestyle-astn-data.html", Table: "lifestyle-astn-20002403", form_module: "lifestyle-astn-form" },
         "lifestyle-astn-form": { url: "$A/modules/lifestyle-astn-form.html", Table: "lifestyle-astn-20002403", task_name:"Lifestyle" },
         "medical-history-astn-data": { url: "$A/modules/medical-history-astn-data.html", Table: "medical-history-astn-20002404", form_module: "medical-history-astn-form" },
-        "medical-history-astn-form": { url: "$A/modules/medical-history-astn-form.html", Table: "medical-history-astn-20002404", task_name:"Medical_History" },
+        "medical-history-astn-form": { url: "$A/modules/medical-history-astn-form.html", Table: "medical-history-astn-20002404", task_name:"Medical History" },
         "sleep-disorder-patterns-astn-data": { url: "$A/modules/sleep-disorder-patterns-astn-data.html", Table: "sleep-disorder-patterns-astn-20002405", form_module: "sleep-disorder-patterns-astn-form" },
         "sleep-disorder-patterns-astn-form": { url: "$A/modules/sleep-disorder-patterns-astn-form.html", Table: "sleep-disorder-patterns-astn-20002405", task_name:"Sleep HQDP" },
         "sleep-hygiene-index-astn-data": { url: "$A/modules/sleep-hygiene-index-astn-data.html", Table: "sleep-hygiene-index-astn-20003571", form_module: "sleep-hygiene-index-astn-form" },
