@@ -209,7 +209,7 @@
               var parent_uid="";
               parent=$("#D__ID input[name=Participant_uid]").val()
               jQuery.ajaxSetup({async:false});
-              $vm.request({cmd:"find",table:$vm.module_list["background-information-astn-data"].Table,query:{"Data.Participant_uid":parent }},function(res){
+              $vm.request({cmd:"find-s",table:$vm.module_list["background-information-astn-data"].Table,query:{"Data.Participant_uid":(m.input.participant_record.UID).toString()}},function(res){
                 if(res.result.length>0){
                   height=res.result[0].Data.Height;
                   weight=res.result[0].Data.Weight;

@@ -282,21 +282,21 @@
             m.load=function(){
                 load2();
                 var sex='';
-                alert(JSON.stringify(m.input))
-                alert(m.input.participant_record.I1)
-/*                if($vm.online_questionnaire==1){
+                //alert(JSON.stringify(m.input))
+                //alert(m.input.participant_record.I1)
+                if($vm.online_questionnaire==1){
                     jQuery.ajaxSetup({async:false});
-                    $vm.request({cmd:"find",table:$vm.module_list["background-information-astn-data"].Table,query:{"Data.Participant_uid":m.input.participant_record.UID,"I1":m.input.participant_record.I1 }},function(res){
+                    $vm.request({cmd:"find-s",table:$vm.module_list["background-information-astn-data"].Table,query:{"Data.Participant_uid":(m.input.participant_record.UID).toString(),"I1":m.input.participant_record.I1 }},function(res){
                         if(res.result.length>0){
                             sex=res.result[0].Data.gender;
                         }
                     });
                     jQuery.ajaxSetup({async:true});
                 }
-  */              if(sex=='0'){
+                if(sex=='0'){
                     $('#women__ID').hide();
                     $('#sex_question__ID').hide();
-                    $("input[name='women']").prop('required', false)
+                    $("input[name='woman']").prop('required', false)
                     $("input[name='menstral_stop']").prop('required', false);
                     $("input[name='hysterectomy']").prop('required', false);
                     $("input[name='hrt_months']").prop('required', false);
@@ -313,7 +313,7 @@
                 }
                 else if(sex=='1') {
                     $('#sex_question__ID').hide();
-                    $("input[name='women']").prop('required', false)
+                    $("input[name='woman']").prop('required', false)
                     $('#woman_only__ID').show();
                     $("input[name='menstral_stop']").prop('required', true)
                     $("input[name='hysterectomy']").prop('required', true);
@@ -330,7 +330,7 @@
                 }
                 else{
                     $('#sex_question__ID').show();
-                    $("input[name='women']").prop('required', true)
+                    $("input[name='woman']").prop('required', true)
                     if($("input[name='woman']:checked").val()=='1' ){
                         $('#woman_only__ID').show();
                         $("input[name='menstral_stop']").prop('required', true)
