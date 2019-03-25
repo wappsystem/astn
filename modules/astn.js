@@ -79,7 +79,7 @@
         "mva-astn-form": { url: "$A/modules/mva-astn-form.html", Table: "mva-astn-20002421", task_name:"Motor Vehicle Accidents" },
         "wa-astn-data": { url: "$A/modules/wa-astn-data.html", Table: "wa-astn-20002422", form_module: "wa-astn-form" },
         "wa-astn-form": { url: "$A/modules/wa-astn-form.html", Table: "wa-astn-20002422", task_name:"Workplace Accidents" },
-        "thank-you-astn-form": { url: "$A/modules/thank-you-astn-form.html", task_name:"Thank You" }
+        "thank-you-astn-form": { url: "$A/modules/thank-you-astn-form.html", Table: "thank-you-astn", task_name:"Thank You" }
     }
     for (m in modules) { $vm.module_list[m] = modules[m]; }
 })();

@@ -10,6 +10,7 @@ m.set_req=function(){
 //-------------------------------------
 m.load=function(){
     m.I1=$vm.astn_current_project_record.UID;
+    //alert(JSON.stringify($vm.astn_current_project_record))
     if(m.input!=undefined && m.input.record!=undefined){
         $('#export_section__ID').hide();
     }

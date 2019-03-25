@@ -40,7 +40,7 @@
 				$('#participant__ID').show();
 				$('#project__ID').text(m.input.record.Data.project_name);
 				$vm.astn_current_project_name=m.input.record.Data.project_name;
-				//alert(m.input.record.UID)
+				//alert(JSON.stringify(m.input.record))
 				//alert($vm.astn_current_project_name);
 				if(m.input.record.Data.Consent=='on') $('#Consent__ID').show();
 				if(m.input.record.Data.Background_Information=='on') $('#Background_Information__ID').show();
