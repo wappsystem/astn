@@ -305,6 +305,7 @@
             //-------------------------------------
             var load2=m.load;
             m.load=function(){
+                load2();
                 //-------------------------------------
                 if ($("#D__ID input[name=current_work]:checked").val() == '1') {
                     $("#D__ID input[name=shift_no]").prop('required', true);

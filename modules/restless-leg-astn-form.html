@@ -108,47 +108,47 @@
       m.load=function(){
           load2();
           if($("input[name='RLS_1']:checked").val()=='1' && $("input[name='RLS_2']:checked").val()=='1' && $("input[name='RLS_3']:checked").val()=='1' ){
-              $("input[name='RLS_1']").prop('requried', true);
+              $("input[name='RLS_4']").prop('required', true);
               $("#forth_question__ID").show();
           }
           else{
               $("#forth_question__ID").hide();
-              $("input[name='RLS_4']").prop('requried',false);
+              $("input[name='RLS_4']").prop('required',false);
               $("input[name='RLS_4']").prop('checked',false);
           }
       }
       //-------------------------------------
       $("input[name='RLS_1']").on('click', function(){
           if($("input[name='RLS_1']:checked").val()=='1' && $("input[name='RLS_2']:checked").val()=='1' && $("input[name='RLS_3']:checked").val()=='1' ){
-              $("input[name='RLS_1']").prop('requried', true);
+              $("input[name='RLS_4']").prop('required', true);
               $("#forth_question__ID").show();
           }
           else{
-              $("#forth_question__ID").hide();
-              $("input[name='RLS_4']").prop('requried',false);
+              $("input[name='RLS_4']").prop('required',false);
               $("input[name='RLS_4']").prop('checked',false);
+              $("#forth_question__ID").hide();
           }
       });
       $("input[name='RLS_2']").on('click', function(){
           if($("input[name='RLS_1']:checked").val()=='1' && $("input[name='RLS_2']:checked").val()=='1' && $("input[name='RLS_3']:checked").val()=='1' ){
-              $("input[name='RLS_1']").prop('requried', true);
+              $("input[name='RLS_4']").prop('required', true);
               $("#forth_question__ID").show();
           }
           else{
-              $("#forth_question__ID").hide();
-              $("input[name='RLS_4']").prop('requried',false);
+              $("input[name='RLS_4']").prop('required',false);
               $("input[name='RLS_4']").prop('checked',false);
+              $("#forth_question__ID").hide();
           }
       });
       $("input[name='RLS_3']").on('click', function(){
           if($("input[name='RLS_1']:checked").val()=='1' && $("input[name='RLS_2']:checked").val()=='1' && $("input[name='RLS_3']:checked").val()=='1' ){
-              $("input[name='RLS_1']").prop('requried', true);
+              $("input[name='RLS_4']").prop('required', true);
               $("#forth_question__ID").show();
           }
           else{
-              $("#forth_question__ID").hide();
-              $("input[name='RLS_4']").prop('requried',false);
+              $("input[name='RLS_4']").prop('required',false);
               $("input[name='RLS_4']").prop('checked',false);
+              $("#forth_question__ID").hide();
           }
       });
   }

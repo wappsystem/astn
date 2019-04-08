@@ -1364,6 +1364,7 @@
             //-------------------------------------
             var load2=m.load;
             m.load=function(){
+                load2();
                 for(var i=0;i<7;i++){
                     set_selected_text(i+1)
                 }
@@ -1554,7 +1555,7 @@
            $("#D__ID input[name=HPQ_2g]").on('click',function(){
                q2_change(7)
            })
-           $("#D__ID input[name=HPQ_2h").on('click',function(){
+           $("#D__ID input[name=HPQ_2h]").on('click',function(){
                q2_change(8)
            })
            //-------------------------------------

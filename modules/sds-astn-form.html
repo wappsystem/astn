@@ -496,6 +496,7 @@
             //-------------------------------------
             var load2=m.load;
             m.load=function(){
+              load2();
                 if($("input[name='SDS1CB']").is(":checked")==true){
                     $("input[name='SDS_1']").prop('required',false);
                 }
