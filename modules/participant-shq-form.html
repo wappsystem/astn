@@ -57,7 +57,7 @@
 				load();
 				if(m.input.record==undefined){
 					$('.row_participant__ID').hide()
-					$('#F__ID input[name=_Password').val($vm.vm_password(8,false));
+					$('#F__ID input[name=_Password]').val($vm.vm_password(8,false));
 				}
 				else{
 					$('.row_participant__ID').show()
@@ -66,7 +66,7 @@
 			}
 			//-------------------------------------
             $('#F__ID input[name=Randomisation_Number]').on('click',function(){   
-				var I2=$('#F__ID input[name=Randomisation_Number').val();
+				var I2=$('#F__ID input[name=Randomisation_Number]').val();
 				if(I2==''){
 					$vm.request({cmd:"find",table:m.Table,sort:{I2:-1},skip:0,limit:1},function(res){
 						if(res.sys.permission==false){
@@ -78,8 +78,8 @@
 							if(res.result[0].I2!==undefined) max_I2=res.result[0].I2
 						}
 						max_I2++;
-						$('#F__ID input[name=Randomisation_Number').val(max_I2);
-						$('#F__ID input[name=Randomised_by').val($vm.user_name);
+						$('#F__ID input[name=Randomisation_Number]').val(max_I2);
+						$('#F__ID input[name=Randomised_by]').val($vm.user_name);
 					})
 				}
 			})
@@ -88,7 +88,7 @@
 				index.I1=$vm.astn_current_project_record.UID;
 				data.thank=$vm.astn_current_project_record.Data.thank_you_comments;
 				data.phone=$vm.astn_current_project_record.Data.phone;
-				var I2=$('#F__ID input[name=Randomisation_Number').val();	if(I2!='' && I2!='-') index.I2=parseInt(I2);
+				var I2=$('#F__ID input[name=Randomisation_Number]').val();	if(I2!='' && I2!='-') index.I2=parseInt(I2);
 			}
 			//-------------------------------------
 		}
