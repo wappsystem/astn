@@ -136,7 +136,9 @@
     		//---------------------------------------------
     		$('#count__ID').on('click',function(){
     			clear_counting();
-    			var N=0;
+				var N=0;
+				//alert(JSON.stringify(m.input))
+				m.I1=m.input.record.I1
     			$('#panel__ID a').each(function(){
     				var $a=$(this);
     				N++;
@@ -167,7 +169,7 @@
 							}})
 						}
 						else{
-							$vm.request({cmd:"count",table:tb,query:{'Data.Participant_uid':participant_record.UID.toString()},options:{}},function(res){
+							$vm.request({cmd:"count",table:tb,I1:m.I1,query:{'Data.Participant_uid':participant_record.UID.toString()},options:{}},function(res){
 								if(res.sys.permission==false){
 									return;
 								}
