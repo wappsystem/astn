@@ -5,15 +5,14 @@
     <div id=components style='display:none'>
         <div id=c_header>
             <div class=vm-mobile>
-                <span id=vm-mobile-title class=vm-mobile-title>Questionnaire</span>
-                <a id="vm-hamburger_button" class=vm-hamburger-button onclick="$vm.toggle()"><i class="fa fa-bars"></i></a>
-            </div>
-            <div class=vm-desk-logo>
-                <span id=vm-logo-label-A>Wappsystem</span><br>
-                <span id=vm-logo-label-B>ASTN Questionnaire Portal</span>
-            </div>
-            <div id="vm-menu">
-                <a id=vm_signout onclick=$vm.nav_signout()><i class="fa fa-user"></i> Sign Out</a>
+                    <div id=vm-logo-mini-image></div>
+                    <a id="vm-hamburger_button" class=vm-hamburger-button onclick="$vm.toggle()"><i class="fa fa-bars"></i></a>
+                </div>
+                <div class=vm-desk-logo>
+                    <div id=vm-logo-image></div>
+                </div>
+                <div id="vm-menu">
+                <a id=vm_signout onclick=$vm.signout()><i class="fa fa-user"></i> Sign Out</a>
             </div>
         </div>
         <div id=c_footer>
@@ -28,7 +27,7 @@
         //------------------------------------
         //Set your default web page title and footer text
         $vm.default_title="Sleep Health Questionnaire";
-        var txt="Key Alt+mouse double click on a content area will show the source code of the content module and where it is hosted. ";
+        var txt="Copyright © "+(new Date()).getFullYear()+", Australasian Sleep Trials Network";
         $('#text_0').html(txt);
         //------------------------------------
         $('#c_header').contents().appendTo('#header');
@@ -80,7 +79,7 @@
     </script>
     <style main-style>
         :root {
-            --menu-color: #fff;
+            --menu-color: #000;
             --menu-hover-color: #29eca6;
             --menu-hover-background-color: #555;
 
@@ -98,6 +97,23 @@
         body{background-size: cover; background-repeat: repeat-x; background-position: center top; background-attachment: fixed;}
         .body_background_default{ background-image: url(https://image.vmiis.com/bk031.jpg);}
         #content{
+        }
+        #vm-logo-image{
+                margin-top: -15px;
+                width:182px;
+                height:55px;
+                background: url(https://astn.wappsystem.com.au/home/astn_trans.png) no-repeat top center;
+                background-size: cover;
+                float:left;
+        }
+        #vm-logo-mini-image{
+            margin-top: 10px;
+            margin-left: 5px;
+            width:91px;
+            height:27px;
+            background: url(https://astn.wappsystem.com.au/home/astn_mini_trans.png) no-repeat top center;
+            background-size: cover;
+            float:left;
         }
         #vm-logo-label-A{
             font-family: Arial, sans-serif;
@@ -122,7 +138,7 @@
             text-align: center;
         }
         /*----------------------*/
-        #header{height:100px;background:rgba(0,0,0,0.6);}
+        #header{height:100px;background:rgba(255,255,255,0.8);}
         .vm-desk-logo{ display:inline-block;float:left;padding:36px 30px 0 30px;cursor:pointer;}
         #vm-menu{ float:left;padding:50px 30px 0 30px;}
         @media screen and (max-width: 1200px){
