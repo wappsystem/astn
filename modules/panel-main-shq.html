@@ -149,7 +149,15 @@
 							}})
 						}
 						else{
-							
+							$vm.request({cmd:"count",table:tb,I1:$vm.astn_current_project_record.UID,query:{I1:$vm.astn_current_project_record.UID},options:{}},function(res){
+								if(res.sys.permission==false){
+									return;
+								}
+                                if(res==undefined) res.result=0
+								var num=res.result;
+								var txt=$('<div/>').html($a.attr('data-a_text')).text();
+								$a.html(txt+" <mark style='background-color:#fff;font-size:9px'>["+num+"]</mark>")
+							});							
 						}
         			}
         		}

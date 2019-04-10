@@ -15,13 +15,13 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
     <script boot-up>
         //------------------------------------
-        $vm={};$vm.ver=[0.62,0.62]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
+        $vm={};$vm.ver=[0.63,0.63]; //increase ver[0] if any module changed, increase ver[1] if vm.js changed
         //------------------------------------
         //app urls
         $vm.public_url_$A='https://astn.wappsystem.com.au';
-        $vm.public_url_$B='https://modules.wappsystem.com.au';
+        //$vm.public_url_$B='https://modules.wappsystem.com.au';
         $vm.local_url_$A='http://127.0.0.1:8000/wappsystem/astn';
-        $vm.local_url_$B='http://127.0.0.1:8000/wappsystem/modules';
+        //$vm.local_url_$B='http://127.0.0.1:8000/wappsystem/modules';
         //------------------------------------
         //where are your start modules
         $vm.start_modules=[
@@ -37,7 +37,6 @@
         $vm.app_modules=[
             "$A/modules/astn-home.js",
             "$A/modules/astn.js",
-            "$B/mdb/common.js",
         ]
         //------------------------------------
         
@@ -53,9 +52,9 @@
         //replace the url
         $vm.replace_url=function(url){
             var urlR=url.replace("$A",$vm.public_url_$A);
-                urlR=urlR.replace("$B",$vm.public_url_$B);
+                //urlR=urlR.replace("$B",$vm.public_url_$B);
             if($vm.localhost==true) urlR=urlR.replace($vm.public_url_$A,$vm.local_url_$A);
-            if($vm.localhost==true) urlR=urlR.replace($vm.public_url_$B,$vm.local_url_$B);
+            //if($vm.localhost==true) urlR=urlR.replace($vm.public_url_$B,$vm.local_url_$B);
             return urlR;
         }
         //------------------------------------
