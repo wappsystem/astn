@@ -196,70 +196,72 @@
                             </fieldset>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="questiongroup ">
-                            <h4>6. How long is your current menstrual cycle</h4>
-                            <fieldset class="subquestions">
-                                <label>
-                                    <input type=number name=cycle_lenght class=form-control min=0 max=999 required/>
-                                </label>
-                                <label>
-                                    <span>&nbsp;days
-                                    </span>
-                                </label>
-                            </fieldset>
-                            <fieldset class="subquestions">
-                                <label>
-                                    <span>&nbsp;&nbsp;&nbsp;Is this consistent?&nbsp;
-                                    </span>
-                                </label>
-                                <label class="radiobuttons">
-                                    <input type="radio" name="cycle_consistent" value="1" required>
-                                    <span class="checkmark"></span> Yes</label><br>
-                                <label class="radiobuttons">
-                                    <input type="radio" name="cycle_consistent" value="0">
-                                    <span class="checkmark"></span> No</label><br>
-                                    <label id=cycle_input__ID>
-                                        <label>
-                                            <span>&nbsp;&nbsp;&nbsp;If not, what is the range?&nbsp;
-                                            </span>
-                                        </label>
-                                        <label>
-                                            <input type=number name=cycle_range_min class=form-control min=0 max=999 />
-                                        </label>
-                                        <label>
-                                            <span>&nbsp;to&nbsp;
-                                            </span>
-                                        </label>
-                                        <label>
-                                            <input type=number name=cycle_range_max class=form-control min=0 max=999 />
-                                        </label>
-                                        <label>
-                                            <span>&nbsp;days
-                                            </span>
-                                        </label>
-                                    </label>
-                            </fieldset>
-                        </div>
-                        </div>
-                        <div class="form-group">
-                        <div class="questiongroup ">
-                            <h4>7. When did your last period begin?</h4>
-                                <fieldset class="subquestions">
-                                    <label>
-                                        <input type=date name=last_period_start class=form-control required/>
-                                    </label>
-                                </fieldset>
-                        </div>
-                        </div>
+                    <div id=menstral__ID >
                         <div class="form-group">
                             <div class="questiongroup ">
-                                <h4>8. When did it finish?</h4>
+                                <h4>6. How long is your current menstrual cycle</h4>
                                 <fieldset class="subquestions">
                                     <label>
-                                        <input type=date name=last_period_end class=form-control required/>
+                                        <input type=number name=cycle_lenght class=form-control min=0 max=999 required/>
+                                    </label>
+                                    <label>
+                                        <span>&nbsp;days
+                                        </span>
                                     </label>
                                 </fieldset>
+                                <fieldset class="subquestions">
+                                    <label>
+                                        <span>&nbsp;&nbsp;&nbsp;Is this consistent?&nbsp;
+                                        </span>
+                                    </label>
+                                    <label class="radiobuttons">
+                                        <input type="radio" name="cycle_consistent" value="1" required>
+                                        <span class="checkmark"></span> Yes</label><br>
+                                    <label class="radiobuttons">
+                                        <input type="radio" name="cycle_consistent" value="0">
+                                        <span class="checkmark"></span> No</label><br>
+                                        <label id=cycle_input__ID>
+                                            <label>
+                                                <span>&nbsp;&nbsp;&nbsp;If not, what is the range?&nbsp;
+                                                </span>
+                                            </label>
+                                            <label>
+                                                <input type=number name=cycle_range_min class=form-control min=0 max=999 />
+                                            </label>
+                                            <label>
+                                                <span>&nbsp;to&nbsp;
+                                                </span>
+                                            </label>
+                                            <label>
+                                                <input type=number name=cycle_range_max class=form-control min=0 max=999 />
+                                            </label>
+                                            <label>
+                                                <span>&nbsp;days
+                                                </span>
+                                            </label>
+                                        </label>
+                                </fieldset>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="questiongroup ">
+                                <h4>7. When did your last period begin?</h4>
+                                    <fieldset class="subquestions">
+                                        <label>
+                                            <input type=date name=last_period_start class=form-control required/>
+                                        </label>
+                                    </fieldset>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="questiongroup ">
+                                    <h4>8. When did it finish?</h4>
+                                    <fieldset class="subquestions">
+                                        <label>
+                                            <input type=date name=last_period_end class=form-control required/>
+                                        </label>
+                                    </fieldset>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -530,6 +532,41 @@
             });
             $("input[name='cycle_consistent']").on('click', function(){
                 if($("input[name='cycle_consistent']:checked").val()=='0' ){$("input[name='cycle_range_min']").prop('required', true);$("input[name='cycle_range_max']").prop('required', true);$("#cycle_input__ID").show();} else {$("input[name='cycle_range_min']").prop('required', false);$("input[name='cycle_range_max']").prop('required', false);$("#cycle_input__ID").hide();}
+            });
+            $("input[name='menstral_stop']").on('click', function(){
+                if($("input[name='menstral_stop']:checked").val()=='1' ){
+                    $("input[name='menstralstop_age']").prop('required', true);
+                    $("#menstral_stop_input__ID").show();
+                    $("input[name='pregnancy']").prop('required', false);
+                    $("input[name='cycle_lenght']").prop('required', false);                    
+                    $("input[name='cycle_range_min']").prop('required', false);
+                    $("input[name='cycle_range_max']").prop('required', false);
+                    $("#cycle_input__ID").hide();
+                    $("input[name='cycle_consistent']").prop('required', false);
+                    $("input[name='last_period_start']").prop('required', false);
+                    $("input[name='last_period_end']").prop('required', false);
+                }
+                else {
+                    $("input[name='menstralstop_age']").prop('required', false);
+                    $("#menstral_stop_input__ID").hide();
+                    $("input[name='pregnancy']").prop('required', true);
+                    $("input[name='cycle_lenght']").prop('required', true);                    
+                    if($("input[name='cycle_consistent']:checked").val()=='0' ){
+                        $("input[name='cycle_range_min']").prop('required', true);
+                        $("input[name='cycle_range_max']").prop('required', true);
+                        $("#cycle_input__ID").show();
+                    } 
+                    else {
+                        $("input[name='cycle_range_min']").prop('required', false);
+                        $("input[name='cycle_range_max']").prop('required', false);
+                        $("#cycle_input__ID").hide();
+                    }
+                    $("input[name='cycle_consistent']").prop('required', true);
+                    $("input[name='last_period_start']").prop('required', true);
+                    $("input[name='last_period_end']").prop('required', true);
+}
+
+
             });
         }
     </script>
