@@ -10,7 +10,7 @@
             //-------------------------------------
             if(m.prefix==undefined) m.prefix="";
            //-------------------------------------
-            var fields="_ASTN_ID,Local_ID,Initials,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password";
+            var fields="_ASTN_ID,Local_ID,Initials,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password,|_x";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //-------------------------------------
             m.load=function(){
@@ -56,6 +56,13 @@
                         break;
                     case '_Login_ID':
                         td.html(records[I].UID+"-"+records[I].Data.Initials);
+                        break;
+                    case '_x':
+                    td.html("<u style='cursor:pointer'> </u>");
+                    td.find('u').on('click',function(){
+                        //$vm.load_module(m.prefix+m.child_panel,'',{record:records[I],proj:m.input.proj});
+                        $vm.load_module(m.prefix+'all-records-astn-data','',{record:records[I]});
+                    });
                         break;
                 }
             }

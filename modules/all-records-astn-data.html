@@ -1,0 +1,107 @@
+<div id=D__ID>
+  <div>
+    VmInclude:__CURRENT_PATH__/grid.v1h.html
+  </div>
+  <script>
+      function F__ID(){
+          //-------------------------------------
+          VmInclude:__COMPONENT__/g/grid.01.js
+          VmInclude:__CURRENT_PATH__/shared-task-astn-data.js
+          //-------------------------------------
+          $('#title__ID').text('All Records')
+          var fields="participation";
+          fields+=",AGE,gender,Weight,Height,BMI,handedness";
+          fields+=",first_language,English_fluency,recent_travel,recent_travel_where";
+          fields+=",ethnicity_0,ethnicity_1,ethnicity_2,ethnicity_3,ethnicity_4,ethnicity_5,ethnicity_6,ethnicity_7,ethnicity_8,ethnicity_9,ethnicity_10,ethnicity_11,ethnicity_other,COB";
+          fields+=",general_health,physical_activity,smoke,smoke_regular,smoke_stop,smoke_age,smoke_per_day,alcohol,alcohol_standard_wd,alcohol_standard_nwd,caffeine,caffeine_wd,caffeine_nwd,caffeine_bed_wd,caffeine_bed_nwd";
+          fields+=",adenoidectomy,adenoidectomy_age,alcohol_abuse,alcohol_abuse_age,anaemia,anaemia_age,heart_condition,heart_condition_age,anxiety,anxiety_age,arthritis,arthritis_age,AF,AF_age,AttDD,AttDD_age,asthma,asthma_age,auditory_defects,auditory_defects_age,bipolar,bipolar_age,cancer,cancer_age,cancer_specify,carotid_surgery,carotid_surgery_age,backneck_pain,backneck_pain_age,bronchitis,bronchitis_age,fatigue,fatigue_age,cirrhosis,cirrhosis_age,Colour_blindness,Colour_blindness_age,bypass,bypass_age,angioplasty_stent,angioplasty_stent_age,heart_failure,heart_failure_age,depression,depression_age,diabetes,diabetes_age,cholesterol,cholesterol_age,emphysema,emphysema_age,erectile_dys,erectile_dys_age,eye_disorder,eye_disorder_age,gastric,gastric_age,reflux,reflux_age,gout,gout_age,hayfever,hayfever_age,hepatitis,hepatitis_age,hypertension,hypertension_age,pacemaker,pacemaker_age,bowel,bowel_age,kidney_failure,kidney_failure_age,kidney_stones,kidney_stones_age,liver,liver_age,motor,motor_age,MS,MS_age,musdystrophy,musdystrophy_age,heart_attack,heart_attack_age,dev_septum,dev_septum_age,osteoporosis,osteoporosis_age,parkinsons,parkinsons_age,vascular,vascular_age,pneumonia,pneumonia_age,polycystic,polycystic_age,poliomyelitis,poliomyelitis_age,posttrauma,posttrauma_age,sinus,sinus_age,stroke,stroke_age,thyroid,thyroid_age,TIA,TIA_age,tonsillectomy,tonsillectomy_age,other_psychiatric,other_psychiatric_age,other_psychiatric_specify,other_heart,other_heart_age,other_heart_specify,loss_consciousness,loss_consciousness_age,loss_consciousness_specify,other_surgery,other_surgery_age,other_surgery_specify,other_medical,other_medical_age,other_medical_specify,menstral_stop,menstralstop_age,hysterectomy,hysterectomy_age,pregnancy,hrt,hrt_months,hrt_current,cycle_lenght,cycle_consistent,cycle_range_min,cycle_range_max,last_period_start,last_period_end";
+          fields+=",diagnosis_OSA,diagnosis_insom,diagnosis_narco,diagnosis_RLS,diagnosis_brux,diagnosis_REM,diagnosis_paras,diagnosis_hypo,diagnosis_DSPD,diagnosis_none,OSA_CPAP,OSA_CPAP_reguse,OSA_CPAP_no,OSA_MAS,OSA_MAS_reguse,OSA_MAS_no,OSA_life,OSA_life_reguse,OSA_life_no,OSA_med,OSA_med_reguse,OSA_med_no,OSA_npresmed,OSA_npresmed_reguse,OSA_npresmed_no,OSA_position,OSA_position_reguse,OSA_position_no,OSA_other,OSA_other_reguse,OSA_other_no,OSA_surgery,OSA_waiting,OSA_none,surgery_palatal,palatal_yr,surgery_tonsillectomy,tonsillectomy_yr,surgery_nose,nose_yr,surgery_laser,laser_yr,surgery_weight,weight_yr,surgery_other,other_yr,surgother_specify,insom_psychologist,insom_psychologist_reguse,insom_psychologist_no,insom_psychiatrist,insom_psychiatrist_reguse,insom_psychiatrist_no,insom_life,insom_life_reguse,insom_life_no,insom_med,insom_med_reguse,insom_med_no,insom_npresmed,insom_npresmed_reguse,insom_npresmed_no,insom_complement,insom_complement_reguse,insom_complement_no,insom_relax,insom_relax_reguse,insom_relax_no,insom_other,insom_other_reguse,insom_other_no,insom_waiting,insom_none,other_life,other_life_reguse,other_life_no,other_psychiatrist,other_psychiatrist_reguse,other_psychiatrist_no,other_med,other_med_reguse,other_med_no,other_other,other_other_reguse,other_other_no,other_waiting,other_none,nap,nap_number,nap_length,nap_refreshed";
+          fields+=",SHI_1,SHI_2,SHI_3,SHI_4,SHI_5,SHI_6,SHI_7,SHI_8,SHI_9,SHI_10,SHI_11,SHI_12,SHI_13,SHI";
+          fields+=",father_diagnosed,father_OSA,father_insomn,father_narco,father_RLS,father_brux,father_RBD,father_para,father_hypo,father_DSPD,mother_diagnosed,mother_OSA,mother_insomn,mother_narco,mother_RLS,mother_brux,mother_RBD,mother_para,mother_hypo,mother_DSPD";
+          fields+=",sleep_med,sleep_suppl,past6_aspirin,curr_aspirin,past6_fentanyl,curr_fentanyl,past6_hydromorphone,curr_hydromorphone,past6_ibuprofen,curr_ibuprofen,past6_ibuprofen_co,curr_ibuprofen_co,past6_morphine,curr_morphine,past6_oxycodone,curr_oxycodone,past6_paracetamol,curr_paracetamol,past6_paracetamol_co,curr_paracetamol_co,past6_tramadol,curr_tramadol,past6_antihistamine,curr_antihistamine,past6_pseudoephedrine,curr_pseudoephedrine,past6_betamethasone,curr_betamethasone,past6_celecoxib,curr_celecoxib,past6_diclofenac,curr_diclofenac,past6_indomethacin,curr_indomethacin,past6_meloxicam,curr_meloxicam,past6_naproxen,curr_naproxen,past6_prednisolone,curr_prednisolone,past6_prednisone,curr_prednisone,past6_alprazolam,curr_alprazolam,past6_clonazepam,curr_clonazepam,past6_diazepam,curr_diazepam,past6_flunitrazepam,curr_flunitrazepam,past6_lorazepam,curr_lorazepam,past6_melatonin,curr_melatonin,past6_nitrazepam,curr_nitrazepam,past6_oxazepam,curr_oxazepam,past6_temazepam,curr_temazepam,past6_zopiclone,curr_zopiclone,past6_zolpidem,curr_zolpidem,past6_agomelatine,curr_agomelatine,past6_citalopram,curr_citalopram,past6_escitalopram,curr_escitalopram,past6_fluoxetine,curr_fluoxetine,past6_lithium,curr_lithium,past6_mirtazapine,curr_mirtazapine,past6_paroxetine,curr_paroxetine,past6_sertraline,curr_sertraline,past6_venlafaxine,curr_venlafaxine,past6_dexamphetamine,curr_dexamphetamine,past6_methylpenidate,curr_methylpenidate,past6_modafinil,curr_modafinil,past6_phentermine,curr_phentermine,past6_aldomet,curr_aldomet,past6_amiodarone,curr_amiodarone,past6_amlodipine,curr_amlodipine,past6_atenolol,curr_atenolol,past6_candesartan,curr_candesartan,past6_captopril,curr_captopril,past6_carvedilol,curr_carvedilol,past6_diltiazem,curr_diltiazem,past6_disopyramide,curr_disopyramide,past6_enalapril,curr_enalapril,past6_felodipine,curr_felodipine,past6_fosinopril,curr_fosinopril,past6_irbesartan,curr_irbesartan,past6_lisinopril,curr_lisinopril,past6_metoprolol,curr_metoprolol,past6_nifedipine,curr_nifedipine,past6_olmesartan,curr_olmesartan,past6_perindopril,curr_perindopril,past6_propranolol,curr_propranolol,past6_ramipril,curr_ramipril,past6_telmisartan,curr_telmisartan,past6_warfarin,curr_warfarin,past6_atorvastatin,curr_atorvastatin,past6_ezet_atorva,curr_ezet_atorva,past6_ezetimibe,curr_ezetimibe,past6_pravastatin,curr_pravastatin,past6_rosuvastatin,curr_rosuvastatin,past6_simvastatin,curr_simvastatin,past6_simv_eze,curr_simv_eze,past6_aclidinium,curr_aclidinium,past6_budesonide,curr_budesonide,past6_bud_eform,curr_bud_eform,past6_ciclesonide,curr_ciclesonide,past6_fluticasone,curr_fluticasone,past6_flut_eform,curr_flut_eform,past6_flut_salm,curr_flut_salm,past6_glycopyrronium,curr_glycopyrronium,past6_indacterol,curr_indacterol,past6_salbutamol,curr_salbutamol,past6_tiotropium,curr_tiotropium,past6_chlorpromazine,curr_chlorpromazine,past6_haloperidol,curr_haloperidol,past6_olanzapine,curr_olanzapine,past6_quetiapine,curr_quetiapine,past6_risperidone,curr_risperidone,past6_benztropine,curr_benztropine,past6_bromocriptine,curr_bromocriptine,past6_cabergoline,curr_cabergoline,past6_gabapentin,curr_gabapentin,past6_hyoscyamine,curr_hyoscyamine,past6_levodopa,curr_levodopa,past6_phenytoin,curr_phenytoin,past6_pramipexole,curr_pramipexole,past6_ropinirole,curr_ropinirole,past6_other_rl_parkinson,curr_other_rl_parkinson,past6_selegiline,curr_selegiline,past6_carnamazepine,curr_carnamazepine,past6_ethosuximide,curr_ethosuximide,past6_phenobarbitone,curr_phenobarbitone,past6_epi_gabapentin,curr_epi_gabapentin,past6_lamotrigine,curr_lamotrigine,past6_epi_phenytoin,curr_epi_phenytoin,past6_pregabalin,curr_pregabalin,past6_primidone,curr_primidone,past6_valproate,curr_valproate,past6_tiagabine,curr_tiagabine,past6_thyroxine,curr_thyroxine,past6_amoxycillin,curr_amoxycillin,past6_amox_clav,curr_amox_clav,past6_cephalexin,curr_cephalexin,past6_chloramphenicol,curr_chloramphenicol,past6_roxithromycin,curr_roxithromycin,past6_esomeprazole,curr_esomeprazole,past6_omeprazole,curr_omeprazole,past6_pantoprazole,curr_pantoprazole,past6_rabeprazol,curr_rabeprazol,past6_ranitidine,curr_ranitidine,past6_gliclazide,curr_gliclazide,past6_insulin,curr_insulin,past6_metformin,curr_metformin,past6_met_gliben,curr_met_gliben,past6_pioglitazone,curr_pioglitazone,past6_rosiglitazone,curr_rosiglitazone,past6_cyp_ethin,curr_cyp_ethin,past6_drosp_ethin,curr_drosp_ethin,past6_levon_ethin,curr_levon_ethin,past6_topical_steroids,curr_topical_steroids,past6_other_hormonal_contraception,curr_other_hormonal_contraception,past6_sex_steroids,curr_sex_steroids,past6_herbal_remedies,curr_herbal_remedies,add_med";
+          fields+=",marijuana_used,marijuana_how_often,marijuana_latest_use";
+          fields+=",cocaine_used,cocaine_how_often,cocaine_latest_use";
+          fields+=",amphetamines_used,amphetamines_how_often,amphetamines_latest_use";
+          fields+=",hallucinogens_used,hallucinogens_how_often,hallucinogens_latest_use";
+          fields+=",heroin_used,heroin_how_often,heroin_latest_use";
+          fields+=",opiates_used,opiates_how_often,opiates_latest_use";
+          fields+=",inhalants_used,inhalants_how_often,inhalants_latest_use";
+          fields+=",ESS_1,ESS_2,ESS_3,ESS_4,ESS_5,ESS_6,ESS_7,ESS_8,ESS";
+          fields+=",MAP_1,MAP_2,MAP_3,MAP";
+          fields+=",ISI_1a,ISI_1b,ISI_1c,ISI_2,ISI_3,ISI_4,ISI_5,ISI_1,ISI";
+          fields+=",RLS_1,RLS_2,RLS_3,RLS_4";
+          fields+=",ME_1,ME_2,ME_3,ME_4,ME_5,ME_6,ME_7,ME_8,ME_9,ME_10,ME_11,ME_12,ME_13,ME";
+          fields+=",FOSQ_1,FOSQ_2,FOSQ_3,FOSQ_4,FOSQ_5,FOSQ_6,FOSQ_7,FOSQ_8,FOSQ_9,FOSQ_10,FOSQ";
+          fields+=",PSQI1,PSQI2,PSQI3,PSQI4,PSQI5a,PSQI5b,PSQI5c,PSQI5d,PSQI5e,PSQI5f,PSQI5g,PSQI5h,PSQI5i,PSQI5j,PSQI5ji,PSQI6,PSQI7,PSQI8,PSQI9,PSQI10a,PSQI10b,PSQI10c,PSQI10d,PSQI10e,PSQI10ei,PSQIDURAT,PSQIDISTB,PSQILATEN,PSQIDAYDYS,PSQIHSE,PSQISLPQUAL,PSQIMEDS,PSQI";
+          fields+=",PHQ_1,PHQ_2,PHQ_3,PHQ_4,PHQ_5,PHQ_6,PHQ_7,PHQ_8,PHQ_9,PHQ";
+          fields+=",GAD_1,GAD_2,GAD_3,GAD_4,GAD_5,GAD_6,GAD_7,GAD";
+          fields+=",DASS_1,DASS_2,DASS_3,DASS_4,DASS_5,DASS_6,DASS_7,DASS_8,DASS_9,DASS_10,DASS_11,DASS_12,DASS_13,DASS_14,DASS_15,DASS_16,DASS_17,DASS_18,DASS_19,DASS_20,DASS_21,DASS_D,DASS_A,DASS_S";
+          fields+=",FSS_1,FSS_2,FSS_3,FSS_4,FSS_5,FSS_6,FSS_7,FSS_8,FSS_9,FSS";
+          fields+=",SDS_1,SDS1CB,SDS_2,SDS_3,SDS_4,SDS_5";
+          fields+=",HPQ_1a,HPQ_1a_lenght,HPQ_1a_period,HPQ_1b,HPQ_1b_lenght,HPQ_1b_period,HPQ_1c,HPQ_1c_lenght,HPQ_1c_period,HPQ_1d,HPQ_1d_lenght,HPQ_1d_period,HPQ_1e,HPQ_1e_lenght,HPQ_1e_period,HPQ_1f,HPQ_1f_lenght,HPQ_1f_period,HPQ_2a,HPQ_2a_hrs,HPQ_2b,HPQ_2b_hrs,HPQ_2c,HPQ_2c_hrs,HPQ_2d,HPQ_2d_hrs,HPQ_2e,HPQ_2e_hrs,HPQ_2f,HPQ_2f_hrs,HPQ_2g,HPQ_2g_hrs,HPQ_2h,HPQ_2h_hrs,HPQ_3CB,HPQ_3,HPQ_4,HPQ_5,HPQ_6a,HPQ_6b,HPQ_6c,HPQ_6d,HPQ_6e,HPQ_7,HPQ_8a,HPQ_8b,HPQ_8c,HPQ_8d,HPQ_9a,HPQ_9b,HPQ_9c,HPQ_9d,HPQ_9e,HPQ_9f,HPQ_9g,HPQ_10,HPQ_11,HPQ_12,HPQ_13,HPQ_14,HPQ_15,HPQ_16,AbsAbsolute,AbsRelative,PreAbsolute,PreRelative";
+          fields+=",current_work,shift_no,shift_start1,shift_end1,shift_month1,shift_start2,shift_end2,shift_month2,shift_start3,shift_end3,shift_month3,shift_start4,shift_end4,shift_month4,shift_start5,shift_end5,shift_month5,shift_start6,shift_end6,shift_month6,shift_start7,shift_end7,shift_month7,shift_years_morning,shift_last_date_morning,shift_years_afternoon,shift_last_date_afternoon,shift_years_night,shift_last_date_night,shift_years_extended,shift_last_date_extended";
+          fields+=",SWD_1,SWD_2,SWD_3,SWD_4,SWD";
+          fields+=",MVA_drive,MVA_accident,accident_vehicle_work,accident_vehicle_nonwork,accident_novehicle_work,accident_nonvehicle_nowork,MVAacc_sleep,MVA_nearmiss,nearmiss_vehicle_work,nearmiss_vehicle_nonwork,nearmiss_novehicle_work,nearmiss_nonvehicle_nowork,MVAnmiss_sleep,fear_drivesleep,drive_nod,alert_caffeine,alert_radio,alert_air,alert_break,dirve_km,drive_yrs,drive_wkhrs,drive_professional";
+          fields+=",work_accident,workacc_num,workacc_sleep,work_nearmiss,worknmiss_num,worknmiss_sleep,work_injuries,injuries_days";
+          m.fields="_Participant_ID,Participant,"+fields;
+          var alltables="consent-astn-20002423,background-information-astn-20002400,general-astn-20002401,ethnicity-self-astn-20002402,lifestyle-astn-20002403,medical-history-astn-20002404,sleep-disorder-patterns-astn-20002405,sleep-hygiene-index-astn-20003571,family-sleep-history-astn-20002406,medications-astn-20002407,rec-drug-astn-20003574,ess-astn-20002408,map-astn-20002409,isi-astn-20002410,restless-leg-astn-20002411,me-astn-20002412,fosq-astn-20002413,psqi-astn-20003576,phq-astn-20002414,gad7-astn-20002415,dass-astn-20002416,fss-astn-20002417,sds-astn-20002418,hwpq-astn-20002419,shiftwork-astn-20002420,shiftworkii-astn-20003584,mva-astn-20002421,wa-astn-20002422";
+          //-------------------------------------
+          m.request_data=function(){
+              var limit=1;
+              var skip=0;
+              var mt1=new Date().getTime();
+              var f_cmd="find";
+              if(m.cmd_type=='s') f_cmd='find-s';
+              else if(m.cmd_type=='p1') f_cmd='find-p1';
+              else if(m.cmd_type=='p2') f_cmd='find-p2';
+              else if(m.cmd_type=='table') f_cmd='find-table';
+              var tbls=alltables.split(",");
+              var allrec;
+              jQuery.ajaxSetup({async:false});
+              $vm.request({cmd:f_cmd,table:m.Table,I1:m.I1,query:m.query,sort:m.sort,projection:m.projection,search:$('#keyword__ID').val(),skip:skip,limit:limit},function(res){
+                  /*
+                  var mt2=new Date().getTime();
+                  var tt_all=mt2-mt1;
+                  var tt_server=parseInt(res.sys.elapsed_time);
+                  if(tt_all<tt_server) tt_all=tt_server;
+                  var db="<span style='color:#0919ec'>&#9679;</span> "; if(res.sys.db==1 || res.sys.db=='on') db="<span style='color:#0bbe0b'>&#9679;</span> ";
+                  var tb="<span style='color:red'>&#9679;</span> ";     if(res.sys.tb==1 || res.sys.tb=='on') tb="<span style='color:#0bbe0b'>&#9679;</span> ";
+                  //$("#elapsed__ID").html(db+tb+(JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
+                  $("#_sys_dev_info_elapsed").html(m.Table+" "+db+tb+(JSON.stringify(res.result).length/1000).toFixed(1)+"kb/"+tt_all.toString()+"ms/"+tt_server+'ms');
+                  */
+                  if(res.status=='np' || res.result==undefined){
+                      res.result=[];
+                  }
+
+                  if(res.status=='np'){
+                      if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                      else $vm.alert("No permission.");
+                  }
+                  allrec=res.result[0].Data;
+                  for (var i=1;i<tbls.length;i++){
+                    $vm.request({cmd:f_cmd,table:tbls[i],I1:m.I1,query:m.query,sort:m.sort,projection:m.projection,search:$('#keyword__ID').val(),skip:skip,limit:limit},function(res){
+                        if(res.status=='np' || res.result==undefined){
+                            res.result=[];
+                        }
+                        if(res.status=='np'){
+                            if(res.sys.tb=='on') $vm.alert("No permission. Private database table, ask the table's owner for permissions.");
+                            else $vm.alert("No permission.");
+                        }
+                        if(res.result.length>0){
+                            Object.assign(allrec,res.result[0].Data);
+                        }
+                    });
+                  }
+                  res.records=allrec;
+                  m.records=res.result;
+                  m.render();
+              })
+              jQuery.ajaxSetup({async:true});
+            };
+      }
+
+  </script>
+  <style>
+      VmInclude:__COMPONENT__/g/grid.01.css
+  </style>
+</div>

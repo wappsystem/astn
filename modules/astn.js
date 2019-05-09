@@ -23,6 +23,7 @@
 
         "notes": { url: "$A/modules/notes.html" },
 
+        "all-records-astn-data": { url: "$A/modules/all-records-astn-data.html", Table: "consent-astn-20002423", form_module: "" },
         "consent-astn-data": { url: "$A/modules/consent-astn-data.html", Table: "consent-astn-20002423", form_module: "consent-astn-form" },
         "consent-astn-form": { url: "$A/modules/consent-astn-form.html", Table: "consent-astn-20002423", task_name:"Consent" },
         "background-information-astn-data": { url: "$A/modules/background-information-astn-data.html", Table: "background-information-astn-20002400", form_module: "background-information-astn-form" },
