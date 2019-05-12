@@ -58,7 +58,7 @@
                         td.html(records[I].UID+"-"+records[I].Data.Initials);
                         break;
                     case '_x':
-                    td.html("<u style='cursor:pointer'> </u>");
+                    td.html("<u style='cursor:pointer'>View All Data</u>");
                     td.find('u').on('click',function(){
                         //$vm.load_module(m.prefix+m.child_panel,'',{record:records[I],proj:m.input.proj});
                         $vm.load_module(m.prefix+'all-records-astn-data','',{record:records[I]});
