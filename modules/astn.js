@@ -7,6 +7,11 @@
             url: "$A/modules/project-shq-data.html", Table: "astn-shq-project-20003481", form_module: "project-shq-form", router: 1,
             child_panel: "panel-main-shq-astn"
         },
+        "aused-data": {
+            url: "$A/modules/aused-data.html", Table: "astn-aused-20003481", form_module: "aused-form", router: 1},
+        "aused-form": {
+            url: "$A/modules/aused-form.html", Table: "astn-aused-20003481"},
+    
         "project-shq-form": { url: "$A/modules/project-shq-form.html", Table: "astn-shq-project-20003481" },
 
         "participant-shq-data": {
