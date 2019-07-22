@@ -176,11 +176,28 @@
                         var dh= new DataView(modbuf,0,arrlength);
                         var startData=0;
                         var startSide=0;
+                        var startObsacle=0;
                         for (var i=0;i<5000;i++){
                             //console.log(String.fromCharCode(hd.getInt8(i))+' '+String.fromCharCode(hd.getInt8(i+1))+' '+String.fromCharCode(hd.getInt8(i+2)));
                             if(String.fromCharCode(hd.getInt8(i))=='[' && String.fromCharCode(hd.getInt8(i+1))=='S' && String.fromCharCode(hd.getInt8(i+2))=='i') {startSide=i+16;}
+                            if(String.fromCharCode(hd.getInt8(i))=='[' && String.fromCharCode(hd.getInt8(i+1))=='O' && String.fromCharCode(hd.getInt8(i+2))=='b') {startObsacle=i+12;}
                             if(String.fromCharCode(hd.getInt8(i))=='[' && String.fromCharCode(hd.getInt8(i+1))=='D' && String.fromCharCode(hd.getInt8(i+2))=='a') {startData=i+8;break;}
                         }
+                        var obstacle=[];
+                        var j=0;
+                        var obs="";
+                        while (String.fromCharCode(hd.getInt8(startObsacle+j))!='['){
+                            if(String.fromCharCode(hd.getInt8(startObsacle+j))==',') {
+                                while (String.fromCharCode(hd.getInt8(startObsacle+j))!='\r'){
+                                    j++
+                                    obs+=String.fromCharCode(hd.getInt8(startObsacle+j));
+                                }
+                                obstacle.push(obs);
+                                obs="";
+                            }
+                            j++;
+                        }
+                        console.log(obstacle)
                         var side=180;
                         if(String.fromCharCode(hd.getInt8(startSide))=='L') side=-180;
                         var timestamps=(arrlength-startData)/38;
@@ -257,25 +274,74 @@
                         if(partitions[0][0]!=0){
                             startpos=partitions[0][0];
                         }
+                        var cl_speed=[];
+                        cl_speed=get_clean_speed(speedArr);
+                        var mean_speed=average(cl_speed.slice(startpos))
                         var mean_position=average(positionArr.slice(startpos))
                         var median_position=median(positionArr.slice(startpos))
                         var mean_median_position=average_median(positionArr.slice(startpos),median_position)
+                        console.log("SPDEV_F="+mean_speed.toFixed(1))
                         console.log("STDVC_F="+mean_position.toFixed(1))
                         //console.log(median_position)
                         console.log("STDVM_F="+mean_median_position.toFixed(1))
+                        var mean_speed_part=[];
                         var mean_position_part=[];
                         var mean_median_position_part=[];
                         for(var i=0;i<partitions.length;i++){
                             var a=average(positionArr.slice(partitions[i][0],partitions[i][1]+1)).toFixed(1)
+                            var b=average(cl_speed.slice(partitions[i][0],partitions[i][1]+1)).toFixed(1)
                             mean_position_part.push(a);
+                            mean_speed_part.push(b);
                             a=average_median(positionArr.slice(partitions[i][0],partitions[i][1]+1),median_position).toFixed(1)
                             mean_median_position_part.push(a)
                         }
+                        console.log("SPDEV_P="+mean_speed_part);
                         console.log("STDEV_P="+mean_position_part);
                         console.log("STDVM_P="+mean_median_position_part);
+                        var reaction_time=get_reaction_time(obstacle,pedalArr,flagArr);
+                        //console.log(reaction_time);
+                        var true_rt=[];
+                        var lapses=0;
+                        for(var i=0;i<reaction_time.length;i++){
+                            if(reaction_time[i]<=3.0 && i>=parseInt(extruck)){
+                                true_rt.push(reaction_time[i])
+                            }
+                            else if(reaction_time[i]>3.0 && i>=parseInt(extruck)){
+                                lapses++;
+                            }
+                        }
+                        var rt_stdev=standardDeviation(true_rt);
+                        var rt_mean=average(true_rt);
+                        var rt_median=median(true_rt);
+                        var number_rt=true_rt.length;
+                        console.log("Number_RT="+number_rt);
+                        console.log("RT="+reaction_time);
+                        console.log("StDev_RT="+rt_stdev);
+                        console.log("Mean_RT="+rt_mean);
+                        console.log("Median_RT="+rt_median);
+                        console.log("Lapses="+lapses);
+                        console.log("Number_Crashes=");
                     }
                 };
                 openFile();
+            }
+            //-------------------------------------
+            var get_reaction_time = function(obstacle,pedalArr,flagArr){
+                reaction=[];
+                for(var i=0;i<obstacle.length;i++){
+                    var location=parseInt(obstacle[i])*50;
+                    var j=1;
+                    if(flagArr[location+j]=='1'){
+                        while(j<500){ //max 10 seconds
+                            if(pedalArr[location+j] < -0.11){
+                                break;
+                            }
+                            j++;
+                        }
+                    }
+                    reaction.push(j*20/1000)
+                }
+                return reaction;                            
             }
             //-------------------------------------
             var get_partitions = function(input_parameters){
@@ -291,6 +357,17 @@
                 return partitions;                            
             }
             //-------------------------------------
+            var get_clean_speed = function(speed){
+                var clean_speed = [];
+                for (var i=0;i<speed.length-1;i++){
+                    if(speed[i]<0.0001) {clean_speed.push(0.0);}
+                    else if(speed[i] <= 80 && speed[i]>=60) clean_speed.push(0.0);
+                    else if(speed[i]>80) {clean_speed.push(speed[i]-80.0);}
+                    else if(speed[i]<60) {clean_speed.push(60.0-speed[i]);}
+                }
+                return clean_speed;
+            }
+            //-------------------------------------
             function median(values){
                 if(values.length ===0) return 0;
                 values.sort(function(a,b){
@@ -303,16 +380,13 @@
             }            
             //-------------------------------------
             function standardDeviation(values){
-                var avg = average(values);
-                
+                var avg = average(values);              
                 var squareDiffs = values.map(function(value){
                     var diff = value - avg;
                     var sqrDiff = diff * diff;
                     return sqrDiff;
                 });
-                
-                var avgSquareDiff = average(squareDiffs);
-
+                var avgSquareDiff = average(squareDiffs)*values.length/(values.length-1);
                 var stdDev = Math.sqrt(avgSquareDiff);
                 return stdDev;
             }
@@ -321,7 +395,6 @@
                 var sum = data.reduce(function(sum, value){
                     return sum + Math.abs(value);
                 }, 0);
-
                 var avg = sum / data.length;
                 return avg;
             }
