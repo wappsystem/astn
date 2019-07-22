@@ -314,16 +314,53 @@
                         var rt_mean=average(true_rt);
                         var rt_median=median(true_rt);
                         var number_rt=true_rt.length;
-                        console.log("Number_RT="+number_rt);
-                        console.log("RT="+reaction_time);
-                        console.log("StDev_RT="+rt_stdev);
-                        console.log("Mean_RT="+rt_mean);
-                        console.log("Median_RT="+rt_median);
-                        console.log("Lapses="+lapses);
-                        console.log("Number_Crashes=");
+                        var number_crashes=get_crashes(flagArr);
+                        var crashes_off_road=get_off_road(number_crashes,positionArr,side);
+                        var crashes_stading_still=get_stading_still(number_crashes,speedArr);
+                        console.log("Number_RT = "+number_rt);
+                        console.log("RT = "+reaction_time);
+                        console.log("StDev_RT = "+rt_stdev);
+                        console.log("Mean_RT = "+rt_mean);
+                        console.log("Median_RT = "+rt_median);
+                        console.log("Lapses = "+lapses);
+                        console.log("Number_Crashes = "+number_crashes.length);
+                        console.log("Crashes_index = "+number_crashes);
+                        console.log("Crashes Off Road =" +crashes_off_road);
+                        console.log("Crashes Stading Still = "+crashes_stading_still);
                     }
                 };
                 openFile();
+            }
+            //-------------------------------------
+            var get_crashes = function(flagArr){
+                var crashes=[];
+                var idx=0;
+                while(idx!=-1){
+                    idx=flagArr.indexOf(2,idx)
+                    if(idx==-1) break;
+                    crashes.push(idx)
+                    idx=flagArr.indexOf(0,idx)
+                }
+                return crashes;                            
+            }
+            //-------------------------------------
+            var get_off_road = function(crashes,positionArr,side){
+                var off_road=0;
+                var left=720+side;
+                var right=-720+side;
+                for (var i=0;i<crashes.length;i++){
+                    console.log(positionArr[crashes[i]],left,right)
+                    if(positionArr[crashes[i]] >left || positionArr[crashes[i]] < right ) off_road++
+                }
+                return off_road;                            
+            }
+            //-------------------------------------
+            var get_stading_still = function(crashes,speedArr){
+                var standing_still=0;
+                for (var i=0;i<crashes.length;i++){
+                    if(speedArr[crashes[i]] == 0 ) standing_still++
+                }
+                return standing_still;                            
             }
             //-------------------------------------
             var get_reaction_time = function(obstacle,pedalArr,flagArr){
