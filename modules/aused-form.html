@@ -142,6 +142,7 @@
             var load2=m.load;
             m.load=function(){
                 load2();
+                $('#record__ID').val(m.input.record.UID)
                 if(m.input.readonly!=undefined) $('#submit__ID').hide();
                 //render_file_field_v2(m.input.record,'__ID',$('#File_Name__ID'));
                 m.set_file_link("File_Name");
@@ -152,6 +153,10 @@
                     file_process(this.files[0])
                 }
             })
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				index.I2=$vm.astn_current_project_record_UID;
+			}
             //-------------------------------------
             var file_process=function(file){
                 /*var stateNames = {};

@@ -13,15 +13,23 @@
             url: "$A/modules/aused-form.html", Table: "astn-aused-20003481"},
     
         "project-shq-form": { url: "$A/modules/project-shq-form.html", Table: "astn-shq-project-20003481" },
+        "project-aused-data": {
+            url: "$A/modules/project-aused-data.html", Table: "astn-aused-project-20003335", form_module: "project-aused-form", router: 1,
+            child_panel: "participant-aused-data"
+        },
+        "project-aused-form": { url: "$A/modules/project-aused-form.html", Table: "astn-aused-project-20003335" },
 
         "participant-shq-data": {
-            url: "$A//modules/participant-shq-data.html", Table: "astn-shq-participant-20002391", form_module: "participant-shq-form",
+            url: "$A/modules/participant-shq-data.html", Table: "astn-shq-participant-20002391", form_module: "participant-shq-form",
             child_panel: "panel-child-shq-astn",
             questionnaire_setup: "online-questionnaire-setup-shq-astn",
             online_questionnaire: "online-questionnaire-app-shq-astn",
             participant_id: { field1: "Local_ID", field2: "Initials" }
         },
-        "participant-shq-form": { url: "$A//modules/participant-shq-form.html", Table: "astn-shq-participant-20002391" },
+        "participant-shq-form": { url: "$A/modules/participant-shq-form.html", Table: "astn-shq-participant-20002391" },
+
+        "participant-aused-data": { url: "$A/modules/participant-aused-data.html", Table: "astn-aused-participant", form_module: "participant-aused-form",},
+        "participant-aused-form": { url: "$A/modules/participant-aused-form.html", Table: "astn-aused-participant" },
 
         "online-questionnaire-setup-shq-astn": { url: "$A/modules/online-questionnaire-setup.html", Table: "astn-shq-participant-20002391" },
         "online-questionnaire-app-shq-astn": { url: "$A/online-questionnaire/index.html" },

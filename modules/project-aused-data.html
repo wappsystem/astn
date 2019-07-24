@@ -9,9 +9,9 @@
             VmInclude:__COMPONENT__/g/grid.01.js       
             //-------------------------------------
             if(m.prefix==undefined) m.prefix="";
-            $('#title__ID').text('Sleep Health Questionnaire Project');            
+            $('#title__ID').text('Aused Projects');            
             //-------------------------------------
-            var fields="_Project_ID,Site,Project Name|project_name,Phone|phone,Thank You Comments|thank_you_comments,Access Project|_shq_entry";
+            var fields="_Project_ID,Site,Project Name|project_name,Exclude first no. of mins|exclude_drive,Exclude no.Reaction Times|exclude_reaction_time,Partition|partition,Access Project|_aused_entry";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
             //m.import_fields="UID,Site,project_name,phone,thank_you_comments,General,Ethnicity,Medical_History,Sleep_HQDP,Sleep_Hygiene_Index,Family_Sleep_History,Medications,Recreational_Drugs,ESS,MAPQ,ISI,Restless_Legs,ME,FOSQ,PSQI,PHQ,GAD,DASS,FSS,SDS,HPQ,Shiftwork,Shiftwork_Disorders,MVA,Workplace_Accidents";
             //-------------------------------------
@@ -20,7 +20,7 @@
                     case '_Project_ID':
                         td.html(records[I].UID);
                         break;
-                    case '_shq_entry':
+                    case '_aused_entry':
                         td.html("<u style='cursor:pointer'>Access Project</u>");
                         td.find('u').on('click',function(){
     						$vm.load_module(m.prefix+m.child_panel,'',{record:records[I]});
