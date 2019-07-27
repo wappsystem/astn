@@ -35,7 +35,7 @@
                 m.fields="_Form,"+fields+','+dyn_fields+",Submit_date,Submitted_by,_Delete";
                 $vm.astn_current_project_record=m.input.record;
                 m.I2=m.input.record.UID;
-                $('#title__ID').text('Project: '+m.input.record.Data.project_name+' | Participants'); 
+                $('#title__ID').text('Project: '+m.input.record.Data.project_name+' '); 
                 m.query={I2:m.I2}
             }
             m.cell_render=function(records,I,field,td,set_value,source){
