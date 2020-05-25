@@ -12,6 +12,7 @@
            //-------------------------------------
             var fields="_ASTN_ID,Local_ID,Initials,_Data_Entry,_Setup,_Questionnaire,_Login_ID,_Password,|_x,Check Progress|_check";
             m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+            m.fields_e="ID,Local_ID,Initials,_Login_ID,_Password,Progress";
             //-------------------------------------
             var first_table="";
             var last_table="";
@@ -131,11 +132,13 @@
                         break;
                     case '_check':
                         td.html("<u style='cursor:pointer'>Check Progress</u>");
-                        td.find('u').on('click',function(){
+                        //td.find('u').on('click',function(){
                             m.query={"Data.Participant_uid":(records[I].UID).toString()};
                             jQuery.ajaxSetup({async:false});
                             $vm.request({cmd:"find",table:last_table,I1:m.I1,query:m.query},function(res){
-                                if(res.result.length>0) td.html("<u style='cursor:pointer'>Check Progress</u> <i style='color:green'  class='fa fa-smile'></i>")
+                                if(res.result.length>0) {
+                                    td.html("<u style='cursor:pointer'>Check Progress</u> <i style='color:green'  class='fa fa-smile'></i>")
+                                }
                                 else {
                                     $vm.request({cmd:"find",table:first_table,I1:m.I1,query:m.query},function(res){
                                         if(res.result.length>0) td.html("<u style='cursor:pointer'>Check Progress</u> <i style='color:orange' class='fa fa-meh'></i>")
@@ -146,11 +149,56 @@
 
                             m.query={};
                             jQuery.ajaxSetup({async:true});
-                        });
+                        //});
                         break;
                }
             }
             //-------------------------------------
+            m.export_records=function(){
+                var req={cmd:"export",table:m.Table,I1:m.I1,search:$('#keyword__ID').val()}
+                open_model__ID();
+                $vm.request(req,function(N,i,txt){
+                    //console.log("B"+i+"/"+N);
+                    $('#msg__ID').text((100*i/N).toFixed(0)+"%");
+                    if(i==-1){
+                        var len=txt.length;
+                        var data_rec="["+txt.substring(5,len-9)+"]";
+                        var o=JSON.parse(data_rec);
+                        //var fields_ex=m.fields_e.replace("ID","ID")
+                        var export_fields=m.fields_e.split(',');
+                        //console.log(JSON.stringify(export_fields))
+                        //Order by m.fields
+                        export_fields=export_fields.slice(0,export_fields.length);
+                        //console.log(export_fields)
+                        var oo=JSON.parse(JSON.stringify(o,export_fields));
+                        var tmp=JSON.stringify(oo).replace(/ID/g,"ID")
+                        oo=JSON.parse(tmp);
+                        var progress="";
+                        for (var k=0;k<oo.length;k++){
+                            m.query={"Data.Participant_uid":(oo[k].ID).toString()};
+                            jQuery.ajaxSetup({async:false});
+                            $vm.request({cmd:"find",table:last_table,I1:m.I1,query:m.query},function(res){
+                                if(res.result.length>0) {
+                                    progress="Green";
+                                }
+                                else {
+                                    $vm.request({cmd:"find",table:first_table,I1:m.I1,query:m.query},function(res){
+                                        if(res.result.length>0) progress='Orange';
+                                        else progress='Red';
+                                    });
+                                }
+                            });
+                            m.query={};
+                            oo[k].Progress=progress;
+                            jQuery.ajaxSetup({async:true});
+                        }
+                        //console.log(JSON.stringify(oo))
+                        $vm.download_csv(m.Table+".csv",oo);
+                        close_model__ID();
+                    }
+                });
+            }
+
         }
     </script>
     <style>
