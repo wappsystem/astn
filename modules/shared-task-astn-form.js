@@ -42,7 +42,7 @@ m.load=function(){
         $("#F__ID input[name=Participant]").val(m.input.participant_record.Data.Local_ID + ' '+m.input.participant_record.Data.Initials);
         $("#F__ID input[name=Participant_uid]").val(m.input.participant_record.UID);
     }
-    else if(m.input!=undefined && m.input.record!=undefined){
+    else if(m.input!=undefined && m.input.participant_record!=undefined){
         m.I1=m.input.participant_record.I1
         //modify
     }
